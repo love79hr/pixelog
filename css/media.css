@@ -1,0 +1,744 @@
+@charset "utf-8";
+
+/* min : 960px부터 ~ 끝까지 : PC버전 -------------------------- */
+@media(min-width:961px) {}
+
+/* max : 0부터 각 사이즈까지 ----------------------------------- */
+@media(max-width:1290px) {
+
+  /* 반응형 시작 */
+  .row {
+    width: 100%;
+  }
+
+  /* 컨텐츠1 */
+  .contents1{
+    padding: clamp(100px, 13vmin, 200px) 0;
+  }
+  .contents1 div.pixelog h3 {
+    font-size: clamp(38px, 7vmin, 75px);
+  }
+  .contents1 div.pixelog p{
+    padding: 0 clamp(10px, 5vmin, 70px);
+  }
+
+
+  /* 푸터영역 */
+  .footer .f_logo a img{
+    width: 230px;
+  }
+
+  .footer .f_sns a img{
+    width: 45px;
+  }
+
+}
+
+@media(max-width:1040px){
+
+  /* 컨텐츠3 */
+  .contents3 .video-section {
+    max-width: 800px;
+  }
+  .contents3 .video-container {
+    max-width: 800px;
+  }
+  .contents3 .video-container iframe {
+    height: 450px;  /* 16:9 비율 (800px ÷ 16 × 9 = 450px) */
+  }
+  .contents3 .thumbnail-slider {
+    max-width: 800px;
+  }
+  .contents3 .thumbnail-item {
+    width: 265px;
+    height: 170px;
+  }
+
+    /* 푸터영역 */
+  .footer .f_logo a img{
+    width: 200px;
+  }
+
+}
+
+@media(max-width:1024px) {
+  
+  /* 컨텐츠3 */  
+  .contents3 .pixelog-update {
+    max-width: 850px;
+  }
+  .contents3 .section-desc {
+    margin-bottom: 50px;
+  }
+    
+  .contents3 .video-section {
+    max-width: 760px;
+  }
+  .contents3 .video-container {
+    max-width: 760px;
+  }
+  .contents3 .video-container iframe {
+    height: 420px;  /* 16:9 비율 (760px ÷ 16 × 9 = 420px) */
+  }
+  .contents3 .thumbnail-slider {
+    max-width: 760px;
+  }
+  .contents3 .thumbnail-item {
+    width: 240px;
+    height: 150px;
+  }
+
+  /* 컨텐츠4 ---------------------------*/
+  .contents4 .member_img {
+    /* 2열 그리드로 변경 */
+    grid-template-columns: 1fr 1fr;
+    width: 90%; /* 화면 너비에 맞게 조절 */
+    height: auto; /* 높이 자동 조절 */
+  }
+
+  .contents4 .member_img .box {
+    /* 각 카드의 높이를 지정하여 비율 유지 */
+    height: 400px;
+  }
+
+  /* 태블릿에서는 확장 애니메이션 비활성화 */
+  .contents4 .member_img:has(.box1:hover),
+  .contents4 .member_img:has(.box2:hover),
+  .contents4 .member_img:has(.box3:hover),
+  .contents4 .member_img:has(.box4:hover) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+/* 0 ~ 960px까지 : 태블릿 ~ 핸드폰까지 */
+@media(max-width:960px) {
+
+   /* 컨텐츠2 */
+  .contents2 .theme {
+    height: 1056px;
+  }
+  .contents2 .theme .theme_box>div>div {
+    width: 49%;
+    height: 60%;
+  }  
+  .contents2 .theme .theme_box>div>div>a.theme_link>h4 {
+    font-size: 24px;
+    left: 20px;
+  }
+
+  .contents2 .theme .theme_box .nebula>div {
+    background-image: url(../images//main/nebula3.png);
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+  }
+  .contents2 .theme .theme_box .planet>div {
+    background-image: url(../images//main/planet3.png);
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+  }
+  .contents2 .theme .theme_box .galaxy>div {
+    background-image: url(../images//main/galaxy3.png);
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+  }
+  .contents2 .theme .theme_box .explore>div {
+    background-image: url(../images//main/explore3.png);
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+  }
+
+  .contents2 .theme .theme_box .nebula .nebula_03,
+  .contents2 .theme .theme_box .nebula .nebula_04,
+  .contents2 .theme .theme_box .planet .planet_03,
+  .contents2 .theme .theme_box .planet .planet_04,
+  .contents2 .theme .theme_box .galaxy .galaxy_01,
+  .contents2 .theme .theme_box .galaxy .galaxy_02,
+  .contents2 .theme .theme_box .explore .explore_01,
+  .contents2 .theme .theme_box .explore .explore_02{
+    display: none;
+  }
+
+  /* 각 테마 공통 포지션 영역 */
+  .contents2 .theme .theme_box>div>div:nth-of-type(1) {
+    background-position: 0% 0%;
+    top: 0%;
+    left: 0%;
+  }
+  .contents2 .theme .theme_box>div>div:nth-of-type(2) {
+    background-position: 100% 0%;
+    top: 8%;
+    left: 51%;
+  }
+  .contents2 .theme .theme_box>div>div:nth-of-type(3) {
+    background-position: 0% 100%;
+    top: 63%;
+    left: 0%;
+  }
+  .contents2 .theme .theme_box>div>div:nth-of-type(4) {
+    background-position: 100% 100%;
+    top: 71%;
+    left: 51%;
+  }
+
+  /* 컨텐츠3 */
+  .contents3 .pixelog-update {
+    max-width: 760px;
+    /* background-color: red; */
+  }
+  .contents3 .section-desc {
+    margin-bottom: 40px;
+  }
+  .contents3 .video-section {
+    max-width: 650px;
+  }
+  .contents3 .video-container {
+    max-width: 650px;
+  }
+  .contents3 .video-container iframe {
+    height: 365px; /* 16:9 비율 (650px ÷ 16 × 9 = 365px) */
+  }
+  .contents3 .thumbnail-slider {
+    max-width: 650px;
+  }
+  .contents3 .thumbnail-item {
+    width: 250px;
+    height: 150px;
+  }
+
+  .contents3 .thumbnail-slider::before {
+    left: -30px;
+    font-size: 30px;
+  }
+  .contents3 .thumbnail-slider::after {
+    right: -30px;
+    font-size: 30px;
+  }
+
+  /* 푸터 영역 */
+  .footer{
+    padding: 50px 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .footer .f_logo, .footer .f_copy, .footer .f_sns{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .footer .f_logo a img{
+    width: 200px;
+  }
+  .footer .f_copy ul{
+    justify-content: center;
+    text-align: center;
+  }
+  .footer .f_sns a img{
+    padding: 5px;
+  }
+}
+
+/*0 ~ 768px까지 : 노트북 */
+@media(max-width: 768px) {
+
+  /* 배너영역 */
+  
+  .typing-container {
+    font-size: 2rem;
+    /* 텍스트 크기 줄이기 */
+    padding: 0 1rem;
+    white-space: normal;
+    /* 텍스트가 줄 바꿈되도록 설정 */
+  }
+
+  /* nav 영역 */
+  nav .container {
+    padding: 0 1.8em 0 0;
+    /* 네비게이션 내부 콘텐츠의 좌우 패딩 */
+  }
+
+  .menu_toggle_svg {
+    display: flex;
+    /* 모바일에서 보임 */
+  }
+
+  .nav_menu {
+    display: none;
+    /* 기본적으로 숨김 */
+    flex-direction: column;
+    background: #1f2020;
+    position: absolute;
+    top: 100%;
+    /* nav 아래에 위치 */
+    left: 0;
+    right: 0;
+    padding: 2em 0;
+    width: 100%;
+    /* 너비 100% */
+    box-sizing: border-box;
+  }
+  nav ul {
+    gap: 0.5em;
+  }
+
+  .nav_menu li {
+    padding: 0.5em 1em;
+    width: fit-content;
+    margin: 0 auto;
+    /* 중앙 정렬 */
+    position: relative;
+  }
+
+  .nav_menu li::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    background-image: linear-gradient(90deg, #ff6666, #ffff66, #66ff66, #b366ff, #b366ff);
+    background-size: 100% 100%;
+    transition: width 0.3s ease-in-out;
+    transform: translateX(-50%);
+  }
+
+  .nav_menu li:hover::after {
+    width: 100%;
+  }
+
+  .nav_txt {
+    color: white;
+    /* 텍스트 색상 */
+  }
+
+  .nav_menu.active {
+    display: flex;
+    /* 활성화 시 보임 */
+  }
+
+  /* 컨텐츠2 ----------------------------------*/
+  .contents2 .theme {
+    height: 1316px;
+  }
+  .contents2 .theme .theme_box{
+    position: static;
+    margin-top: 0;
+  }
+  .contents2 .theme .theme_box > div{
+    width: 85%;
+    margin:0 7.5% 2% 7.5%;
+    overflow: hidden;
+  }
+  .contents2 .theme .theme_box > div > div{
+    width: 100%;  
+    height: 280px;
+    position: relative;
+  }
+  .contents2 .theme .theme_box > div > div > a.theme_link{
+    width: 100%;
+    /* height: 12.625rem; */
+    position: relative;
+    z-index: 6;
+    pointer-events: auto;
+  }
+  .contents2 .theme .theme_box > div > div > a.theme_link > h4 {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    margin: 0;
+    z-index: 2;
+  }
+
+  .contents2 .theme .theme_box .nebula > div,
+  .contents2 .theme .theme_box .planet > div,
+  .contents2 .theme .theme_box .galaxy > div,
+  .contents2 .theme .theme_box .explore > div{
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    transform: scale(1);
+    transition: transform 0.5s ease-in-out;
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+  .contents2 .theme .theme_box .nebula > div:hover,
+  .contents2 .theme .theme_box .planet > div:hover,
+  .contents2 .theme .theme_box .galaxy > div:hover,
+  .contents2 .theme .theme_box .explore > div:hover,
+  .contents2 .theme .theme_box .nebula > div:active,
+  .contents2 .theme .theme_box .planet > div:active,
+  .contents2 .theme .theme_box .galaxy > div:active,
+  .contents2 .theme .theme_box .explore > div:active{
+    transform: scale(1.05);
+  }
+
+  
+  .contents2 .theme .theme_box .nebula > div::before,
+  .contents2 .theme .theme_box .planet > div::before,
+  .contents2 .theme .theme_box .galaxy > div::before,
+  .contents2 .theme .theme_box .explore > div::before{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none;
+  }
+  .contents2 .theme .theme_box .nebula > div:hover::before,
+  .contents2 .theme .theme_box .planet > div:hover::before,
+  .contents2 .theme .theme_box .galaxy > div:hover::before,
+  .contents2 .theme .theme_box .explore > div:hover::before,
+  .contents2 .theme .theme_box .nebula > div:active::before,
+  .contents2 .theme .theme_box .planet > div:active::before,
+  .contents2 .theme .theme_box .galaxy > div:active::before,
+  .contents2 .theme .theme_box .explore > div:active::before{
+    opacity: 0;
+  }
+
+  .contents2 .theme .theme_box .nebula>div {
+    background-image: url(../images//main/nebula.png);
+  }
+  .contents2 .theme .theme_box .planet>div {
+    background-image: url(../images//main/planet.png);
+  }
+  .contents2 .theme .theme_box .galaxy>div {
+    background-image: url(../images//main/galaxy.png);
+  }
+  .contents2 .theme .theme_box .explore>div {
+    background-image: url(../images//main/explore.png);
+  }
+  
+  .contents2 .theme .theme_box .nebula .nebula_02,
+  .contents2 .theme .theme_box .planet .planet_01,
+  .contents2 .theme .theme_box .galaxy .galaxy_04,
+  .contents2 .theme .theme_box .explore .explore_03 {
+    display: none;
+  }
+
+  .contents2 .theme .theme_box>div>div:nth-of-type(1) {
+    top: 0;
+    left: 0;
+  }
+  .contents2 .theme .theme_box>div>div:nth-of-type(2) {
+    top: 0;
+    left: 0;
+  }
+  .contents2 .theme .theme_box>div>div:nth-of-type(3) {
+    top: 0;
+    left: 0;
+  }
+  .contents2 .theme .theme_box>div>div:nth-of-type(4) {
+    top: 0;
+    left: 0;
+  }
+
+
+  /* 컨텐츠3 */
+  .contents3 .pixelog-update {
+    max-width: 600px;
+    /* background-color: red; */
+  }
+  .contents3 .section-desc {
+    margin-bottom: 30px;
+  }
+  .contents3 .video-section {
+    max-width: 515px;
+  }
+  .contents3 .video-container {
+    max-width: 515px;
+  }
+  .contents3 .video-container iframe {
+    height: 290px; /* 16:9 비율 (515px ÷ 16 × 9 = 290px) */
+  }
+  .contents3 .thumbnail-slider {
+    max-width: 515px;
+  }
+  .contents3 .thumbnail-item {
+    width: 250px;
+    height: 150px;
+  }
+  .contents3 .thumbnail-slider::before {
+    left: -25px;
+    font-size: 25px;
+  }
+  .contents3 .thumbnail-slider::after {
+    right: -25px;
+    font-size: 25px;
+  }
+  .contents3 .play-button {
+    width: 40px;
+    height: 40px;
+  }
+  .contents3 .play-button i {
+    font-size: 14px;
+  }
+
+  /* 푸터 영역 */
+  .footer .f_logo a img{
+    width: 180px;
+  }
+
+  .footer .f_copy ul{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; /* 반응형에서 리스트 항목 줄 바꿈 허용 */
+  }
+  .footer .f_copy ul li span.colon{
+    display: none;
+  }
+
+  .footer .f_sns a img{
+    width: 38px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* 모바일에 맞게 텍스트 크기 조정 */
+  .contents4 .member_text h3.m_title {
+    font-size: 36px;
+  }
+  .contents4 .member_text p.m_subtext {
+    font-size: 18px;
+    margin-bottom: 50px;
+  }
+
+  .contents4 .member_img {
+    /* 1열 그리드로 변경 (세로 정렬) */
+    grid-template-columns: 1fr;
+    width: 85%; /* 화면 너비에 맞게 조절 */
+    gap: 2em; /* 카드 사이 간격 */
+  }
+  
+  .contents4 .member_img .box {
+    height: 350px; /* 모바일 화면에 맞게 높이 재조정 */
+  }
+
+  /* 모바일에서는 확장 애니메이션 비활성화 */
+  .contents4 .member_img:has(.box1:hover),
+  .contents4 .member_img:has(.box2:hover),
+  .contents4 .member_img:has(.box3:hover),
+  .contents4 .member_img:has(.box4:hover) {
+    grid-template-columns: 1fr;
+  }
+
+  /* 엇갈린 효과 초기화 (세로 정렬에서는 불필요) */
+  .contents4 .member_img .box:nth-child(odd),
+  .contents4 .member_img .box:nth-child(even) {
+    transform: none;
+  }
+  
+}
+
+/* 0 ~ 600px 까지 : 핸드폰 */
+@media(max-width: 600px) {
+
+   /* 컨텐츠3 */
+  .contents3 .pixelog-update {
+    max-width: 450px;
+  }
+  .contents3 .section-desc {
+    margin-bottom: 25px;
+  }
+  .contents3 .video-section {
+    max-width: 420px;
+  }
+  .contents3 .video-container {
+    max-width: 420px;
+  }
+  .contents3 .video-container iframe {
+    height: 236px; /* 16:9 비율 (420px ÷ 16 × 9 = 236px) */
+  }
+  .contents3 .thumbnail-slider {
+    max-width: 420px;
+  }
+  .contents3 .thumbnail-item {
+    width: 200px;
+    height: 120px;
+  }
+  .contents3 .thumbnail-slider::before {
+    left: -25px;
+    font-size: 30px;
+  }
+  .contents3 .thumbnail-slider::after {
+    right: -25px;
+    font-size: 30px;
+  }
+  .contents3 .play-button {
+    width: 30px;
+    height: 30px;
+  }
+  .contents3 .play-button i {
+    font-size: 12px;
+  }
+
+}
+
+/* 0 ~ 480px 까지 : 핸드폰 */
+@media(max-width: 480px) {
+
+  /* 배너영역 */
+  .video-background-container {
+    /* height: 40vh; 모바일에서 더 작은 높이로 설정 */
+  }
+
+  .typing-container {
+    font-size: 1.5rem;
+    /* 텍스트 크기 더 줄이기 */
+    padding: 0 0.5rem;
+    top: 55%;
+    /* 모바일에서 중앙 위치 조정 */
+  }
+
+  
+  /* 컨텐츠2 */
+  .contents2 .theme {
+    height: 980px;
+  }
+  .contents2 .theme .theme_box > div{
+    width: 85%;
+    margin:0 7.5% 3% 7.5%;
+  }
+  .contents2 .theme .theme_box > div > div{
+    width: 100%;  
+    height: 200px;
+    position: relative;
+  }
+
+  /* 컨텐츠3 */
+  .contents3 .pixelog-update {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .contents3 .section-desc {
+    margin-bottom: 20px;
+  }
+  .contents3 .video-section {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .contents3 .video-container {
+    box-shadow: none;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .contents3 .video-container iframe {
+    width: 100% !important;
+    aspect-ratio: 16/9 !important;
+    height: auto !important;
+  }
+  .contents3 .thumbnail-item {
+    width: 150px;
+    aspect-ratio: 16/9;
+    height: auto;
+  }
+  .contents3 .thumbnail-slider {
+    padding: 0 40px; /* 좌우 패딩으로 썸네일을 중앙으로 모음 */
+  }
+  .contents3 .thumbnail-slider::before {
+    left: 5px;
+    font-size: 30px;
+  }
+  .contents3 .thumbnail-slider::after {
+    right: 5px;
+    font-size: 30px;
+  }
+  .contents3 .play-button {
+    width: 25px;
+    height: 25px;
+  }
+  .contents3 .play-button i {
+    font-size: 10px;
+  }
+
+  /* 푸터 영역 */
+  .footer{
+    width: 100%;
+    height: 90%;
+  }
+  .footer .f_logo a img{
+    width: 150px;
+  }
+  .footer .f_copy ul li a{
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    padding: 3px 0;
+  }
+  .footer .f_copy ul li a span{
+    display: none;
+  }
+  .footer .f_copy p{
+    font-size: 15px;
+    padding-top: 10px;
+  }
+
+}
+
+/* 0 ~ 320px 까지 : 핸드폰 */
+@media(max-width: 320px) {
+
+  /* 컨텐츠2 */
+  .contents2 .theme {
+    height: 807px;
+  }
+  .contents2 .theme .theme_box > div{
+    width: 85%;
+    margin:0 7.5% 4% 7.5%;
+  }
+  .contents2 .theme .theme_box > div > div{
+    width: 100%;  
+    height: 150px;
+  }
+
+  /* 컨텐츠3 */
+  .contents3 .pixelog-update {
+    max-width: 320px;
+  }
+  .contents3 .section-desc {
+    margin-bottom: 15px;
+  }
+  .contents3 .video-section {
+    max-width: 320px;
+  }
+  .video-container {
+    box-shadow: none;
+  }
+  
+  .contents3 .video-container iframe {
+    height: 180px; /* 16:9 비율 (320px ÷ 16 × 9 = 180px) */
+  }
+  .contents3 .thumbnail-slider {
+    padding: 0 40px; /* 좌우 패딩으로 썸네일을 중앙으로 모음 */
+  }
+  .contents3 .thumbnail-item {
+    width: 120px;   
+    height: 72px; /* 16:9 비율 유지 (120px ÷ 16 × 9 = 67.5px) */
+  }
+  .contents3 .thumbnail-slider::before {
+    left: 10px;
+    font-size: 30px;
+  }
+  .contents3 .thumbnail-slider::after {
+    right: 10px;
+    font-size: 30px;
+  }
+  .contents3 .play-button {
+    width: 20px;
+    height: 20px;
+  }
+  .contents3 .play-button i {
+    font-size: 8px;
+  }
+  
+}
+

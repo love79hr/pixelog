@@ -1,0 +1,316 @@
+@charset "utf-8";
+
+/* ===================================================================
+    반응형 웹 디자인을 위한 미디어 쿼리 (media1.css)
+    - CSS 변수와 clamp()를 활용한 유동적인 디자인
+    - 데스크톱 우선 (큰 화면부터 작은 화면 순으로 스타일 조정)
+=================================================================== */
+
+/* ===========================================
+   공통 변수 (clamp() 함수 활용)
+   =========================================== */
+:root {
+  /* 폰트 사이즈 변수 */
+  --font-xs: clamp(0.8rem, 2vw, 0.9rem);      /* 12.8px ~ 14.4px */
+  --font-sm: clamp(0.9rem, 2.5vw, 1rem);    /* 14.4px ~ 16px */
+  --font-md: clamp(1rem, 3vw, 1.25rem);     /* 16px ~ 20px */
+  --font-lg: clamp(1.25rem, 4vw, 2rem);     /* 20px ~ 32px */
+  --font-xl: clamp(2rem, 5vw, 3rem);        /* 32px ~ 48px */
+  --font-xxl: clamp(2.5rem, 6vw, 3.5rem);   /* 40px ~ 56px */
+
+  /* 여백 변수 */
+  --spacing-sm: clamp(1rem, 3vw, 1.5rem);   /* 16px ~ 24px */
+  --spacing-md: clamp(2rem, 5vw, 4rem);     /* 32px ~ 64px */
+  --spacing-lg: clamp(4rem, 8vw, 6rem);     /* 64px ~ 96px */
+
+  /* 컨테이너 변수 */
+  --container-padding: clamp(1rem, 5vw, 2.5rem); /* 16px ~ 40px */
+}
+
+
+/* -------------------------------------------------------------------
+    1. 일반 데스크톱 및 태블릿 가로 모드 (1280px 이하)
+------------------------------------------------------------------- */
+@media (max-width: 1280px) {
+  /* 공통 레이아웃 패딩 조정 */
+  .container,
+  .text-area3,
+  .timeline,
+  .tab-container {
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+  }
+
+  /* 섹션별 타이틀 폰트 크기 조정 */
+  .title-large, .title-large2, .title-large3, #section4 .header h1, .title-large4 {
+    font-size: var(--font-xxl);
+  }
+  .title-medium, .title-medium2, .title-medium3, .title-medium4 {
+    font-size: var(--font-lg);
+  }
+}
+/* -------------------------------------------------------------------
+    2. 태블릿 세로 모드 (1024px 이하)
+------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  /* 공통 타이틀 상단 여백 조정 */
+  .title-large, .title-large2, .title-large3 {
+    margin-top: 200px;
+  }
+  .title-small, .title-small2, .title-small3 {
+    font-size: var(--font-sm);
+  }
+
+  /* 영상 섹션: 텍스트와 영상 박스를 세로로 배치 */
+  .video-section { flex-direction: column; }
+  .video-section .container { flex-direction: column; text-align: center; }
+  .video-box {
+    margin-top: var(--spacing-md);
+    justify-content: center;
+    width: 100%;
+  }
+  .video-box iframe {
+    width: 100%;
+    max-width: 600px; /* ⭐️수정: 너비 조정 */
+    height: 338px;
+  }
+
+  /* 성운 소개 섹션: 텍스트 중앙 정렬 */
+  .text-area3 { justify-content: center; text-align: center; }
+  .text-box3 { text-align: center; }
+
+  /* 타임라인 섹션: 좌우 박스 너비 조정 */
+  .checkpoint > div { width: 42%; }
+  .checkpoint h3 { font-size: var(--font-md); }
+  .checkpoint p { font-size: var(--font-sm); }
+  
+  /* 탭 콘텐츠 섹션: 이미지와 텍스트를 세로로 배치 */
+  .tab-content {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    text-align: center;
+  }
+  .tab-content-wrapper {
+    min-height: 650px; /* ⭐️수정: 세로 배치 시 높이 확보 */
+  }
+  .image-section {
+    order: -1; /* 이미지를 텍스트 위로 이동 */
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/* -------------------------------------------------------------------
+    3. 모바일 (767px 이하)
+------------------------------------------------------------------- */
+@media (max-width: 767px) {
+
+
+  /* 공통 레이아웃 패딩 축소 */
+  .container, .text-area3, .timeline, .tab-container {
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
+  }
+
+  /* 공통 타이틀 폰트 및 여백 추가 축소 */
+  .title-large, .title-large2, .title-large3, #section4 .header h1, .title-large4 {
+    font-size: var(--font-xl);
+    margin-top: 150px;
+  }
+  .title-medium, .title-medium2, .title-medium3, .title-medium4 {
+    font-size: var(--font-md);
+  }
+
+  .title-large
+ { margin-top: 250px;}
+
+  /* 타임라인 섹션: 세로 정렬 레이아웃으로 변경 */
+  .timeline::before { left: 20px; transform: translateX(0); }
+  .checkpoint {
+    padding-left: 50px;
+    min-height: auto;
+    margin-bottom: var(--spacing-md);
+  }
+  .checkpoint::after {
+    left: 20px;
+    width: 15px; /* ⭐️수정: 아이콘 크기 조정 */
+    height: 15px;
+  }
+  .checkpoint > div {
+    position: static;
+    width: 100%;
+    transform: none;
+    text-align: left;
+    padding: var(--spacing-sm);
+  }
+  .checkpoint:nth-child(odd) > div,
+  .checkpoint:nth-child(even) > div {
+    text-align: left;
+  }
+
+  /* 갤러리 섹션: 세로 정렬 레이아웃으로 변경 */
+ .presentsection .options {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .presentsection .option {
+    aspect-ratio: 1 / 1;
+  }
+
+  .presentsection .option.active {
+    aspect-ratio: 1 / 1;
+    transform: none;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 20px var(--shadow-color);
+  }
+
+  /* 탭 콘텐츠 섹션: 폰트 크기 및 버튼 조정 */
+  .text-section h2 { font-size: var(--font-lg); }
+  .text-section p { font-size: var(--font-xs); }
+  .tabs { flex-wrap: wrap; }
+  .tab { font-size: var(--font-xs); }
+
+  /* 마지막 캔버스 섹션 텍스트 크기 조정 */
+  #last-section h2 { font-size: var(--font-lg); }
+  #last-section p { font-size: var(--font-md); }
+}
+/* -------------------------------------------------------------------
+    4. 작은 모바일 (480px 이하)
+------------------------------------------------------------------- */
+@media (max-width: 480px) {
+    /* 공통 타이틀 여백 조정 */
+    .title-large, .title-large2, .title-large3 {
+      margin-top: 300px;
+    }
+
+    /* 영상 섹션 iframe 높이 조정 */
+    .video-box iframe {
+        height: 250px;
+    }
+
+    /* 탭 그룹 버튼 세로 정렬 */
+    .group-tabs {
+        flex-direction: column;
+    }
+
+    /* 갤러리 섹션 활성/비활성 높이 조정 */
+    .presentsection .option {
+        height: 120px;
+    }
+    .presentsection .option.active {
+        height: 240px;
+    }
+
+    /* 갤러리(#section5) 레이아웃을 세로 정렬로 변경 */
+    #section5 .options {
+        flex-direction: column; /* ⭐️ flex 방향을 세로로 변경 */
+        height: auto; /* ⭐️ 높이를 자동으로 설정하여 내용에 맞춤 */
+        width: 90%;   /* ⭐️ 너비를 90%로 설정하여 좌우 여백 확보 */
+        gap: 15px;    /* ⭐️ 항목 간의 간격 추가 */
+    }
+
+    /* 갤러리 각 항목의 스타일 조정 */
+    #section5 .option {
+        width: 100%; /* ⭐️ 너비를 100%로 설정하여 가로로 꽉 채움 */
+        flex: 1 0 100px; /* ⭐️ flex-basis를 100px로 설정하여 기본 높이 지정 */
+        min-width: 0; /* ⭐️ 불필요한 최소 너비 제거 */
+    }
+
+    /* 활성화되었을 때 항목 확장 효과 (높이 변경) */
+    #section5 .option.active {
+        flex-grow: 2; /* ⭐️ 활성화 시 다른 항목보다 2배 더 커지도록 설정 */
+    }
+
+  }
+/* ⭐️삭제: 불필요한 닫는 중괄호 제거 */
+
+
+
+/* 푸터 영역 미디어 ----------------------------------*/
+@media(max-width:1290px){
+  .footer .f_logo a img{
+    width: 230px;
+  }
+  .footer .f_sns a img{
+    width: 45px;
+  }
+}
+@media(max-width:1040px){
+  .footer .f_logo a img{
+    width: 200px;
+  }
+}
+@media(max-width:960px){
+
+  .footer{
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .footer .f_logo, .footer .f_copy, .footer .f_sns{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .footer .f_logo a img{
+    width: 200px;
+  }
+  .footer .f_copy ul{
+    justify-content: center;
+    text-align: center;
+  }
+  .footer .f_copy p{
+    text-align: center;
+  }
+  .footer .f_sns a img{
+    padding: 5px;
+  }
+
+}
+@media (max-width: 768px){
+  
+  .footer .f_logo a img{
+    width: 180px;
+  }
+
+  .footer .f_copy ul{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; /* 반응형에서 리스트 항목 줄 바꿈 허용 */
+  }
+  .footer .f_copy ul li span.colon{
+    display: none;
+  }
+
+  .footer .f_sns a img{
+    width: 38px;
+  }
+}
+@media (max-width: 480px){
+  .footer{
+    width: 100%;
+    height: 90%;
+  }
+  .footer .f_logo a img{
+    width: 150px;
+  }
+  .footer .f_copy ul li a{
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    padding: 3px 0;
+  }
+  .footer .f_copy ul li a span{
+    display: none;
+  }
+  .footer .f_copy p{
+    font-size: 15px;
+    padding-top: 10px;
+  }
+}

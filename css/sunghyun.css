@@ -1,0 +1,1004 @@
+@charset "utf-8";
+
+/* 색상 변수 정의 (기존 유지, 필요 시 더 어두운/밝은 계열 추가 고려) */
+:root {
+  --main-bg: #0a0a1a; /* 메인 배경색 - 더 깊은 우주 느낌의 아주 짙은 남색/검정 */
+  --secondary-bg: #1c1c3a; /* 보조 배경색 (카드, 모달 등) - 짙은 보라빛 남색 */
+  --accent-color: #cd7f32; /* 강조 색상 - 은은한 청동색 (골드 느낌) */
+  --accent-light: #ffd700; /* 강조 색상 밝은 버전 (골드) */
+  --line-gradient-start: #cd7f32; /* 타임라인 그라데이션 시작 */
+  --line-gradient-middle: #a0522d; /* 타임라인 그라데이션 중간 */
+  --line-gradient-end: #0a0a1a; /* 타임라인 그라데이션 끝 (배경과 맞춤) */
+  --text-color: #e0e0e0; /* 일반 텍스트 색상 - 밝은 회색 */
+  --light-text-color: #f5f5f5; /* 더 밝은 텍스트 색상 */
+  --shadow-color: rgba(
+    255,
+    215,
+    0,
+    0.4
+  ); /* 그림자 색상 - 강조색 기반 (황금빛 그림자) */
+  --box-shadow-color: rgba(
+    255,
+    215,
+    0,
+    0.15
+  ); /* 박스 그림자 색상 (은은한 빛) */
+  --star-twinkle-color: rgba(255, 255, 200, 0.7); /* 별 반짝임 색상 */
+}
+
+/* 기본 스타일 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Orbitron", sans-serif;
+  background-color: var(--main-bg); /* 더 깊은 우주 배경색 */
+  color: var(--text-color); /* 텍스트 색상 변수 사용 */
+  overflow-x: hidden; /* 가로 스크롤 방지 */
+}
+
+/* 모든 섹션 공통 스타일 */
+section.section {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 100px 40px;
+  opacity: 0; /* 초기 투명하게 설정 */
+  transform: translateY(50px); /* 초기 위치 아래로 설정 */
+  transition: opacity 1s ease-out, transform 1s ease-out; /* 애니메이션 효과 추가 */
+}
+
+section.section.show {
+  /* 스크롤 시 나타날 클래스 */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+section.section:not(:first-child) {
+  margin-top: 120px;
+}
+
+h2.section-title {
+  text-align: center;
+  font-size: 3rem;
+  color: var(--accent-light);
+  margin: 0 auto 80px auto; /* 중앙 정렬 및 아래 여백 */
+  padding: 1.5rem 2.5rem; /* 패딩 추가 */
+  display: inline-block; /* 패딩과 보더를 적용하기 위해 인라인 블록으로 변경 */
+  background: linear-gradient(
+    135deg,
+    rgba(28, 28, 58, 0.5),
+    rgba(10, 10, 26, 0.5)
+  ); /* 투명도를 낮춘 배경 */
+  border-radius: 1.5rem; /* 모서리 둥글게 */
+  box-shadow: 0 5px 25px var(--box-shadow-color),
+    /* 은은한 그림자 */ 0 0 50px rgba(255, 215, 0, 0.1); /* 약한 발광 효과 */
+  border: 1px solid var(--accent-color); /* 강조색 테두리 */
+  text-shadow: 0 0 15px var(--shadow-color), 0 0 30px rgba(255, 215, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+h2.section-title:hover {
+  box-shadow: 0 8px 40px var(--shadow-color), 0 0 80px var(--accent-light);
+  transform: translateY(-5px) scale(1.01);
+}
+
+/* hero section----------------------------------start */
+.hero {
+  position: relative;
+  height: 90vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--main-bg);
+  overflow: hidden;
+}
+
+.hero-img-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* 히어로 이미지 주변에 은은한 빛 효과 추가 */
+  box-shadow: 0 0 80px rgba(255, 215, 0, 0.1), inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.hero-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.8); /* 이미지 밝기 약간 낮춰 우주 분위기 강조 */
+}
+
+.img-txt {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3.5rem;
+  color: var(--light-text-color);
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.4); /* 텍스트에 더 밝은 빛 효과 */
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid var(--light-text-color);
+  width: 0;
+  z-index: 10;
+  animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 26ch;
+  }
+}
+
+@keyframes blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--light-text-color);
+  }
+}
+
+/* ===== 타임라인 ===== */
+
+.timeline {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 120px 20px;
+  background-color: var(--main-bg); /* 더 깊은 우주 배경색 */
+  min-height: 800px;
+  z-index: 0; /* 별 가상 요소보다 상위에 있도록 조정될 수 있음 */
+  overflow: hidden; /* 별들이 섹션 밖으로 나가지 않도록 */
+}
+
+/* 움직이는 별 효과 (가장 뒤에 깔리는 배경 별들) */
+.timeline::after {
+  /* 기존 :after를 배경 별로 활용 */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+        /* 더 많은 별들, 다양한 크기, 무작위 위치로 배치 */
+        /* 아주 작은 별들 (가장 많음) */ radial-gradient(
+        circle at 10% 20%,
+        rgba(255, 255, 255, 0.3) 0.8px,
+        transparent 1px
+      )
+      no-repeat 12% 25%,
+    radial-gradient(
+        circle at 80% 5%,
+        rgba(255, 255, 255, 0.25) 0.7px,
+        transparent 0.9px
+      )
+      no-repeat 90% 15%,
+    radial-gradient(
+        circle at 30% 70%,
+        rgba(255, 255, 255, 0.4) 1px,
+        transparent 1.2px
+      )
+      no-repeat 35% 85%,
+    radial-gradient(
+        circle at 60% 90%,
+        rgba(255, 255, 255, 0.35) 0.9px,
+        transparent 1.1px
+      )
+      no-repeat 70% 40%,
+    radial-gradient(
+        circle at 5% 50%,
+        rgba(255, 255, 255, 0.2) 0.6px,
+        transparent 0.8px
+      )
+      no-repeat 5% 60%,
+    radial-gradient(
+        circle at 95% 45%,
+        rgba(255, 255, 255, 0.45) 1.1px,
+        transparent 1.3px
+      )
+      no-repeat 80% 70%,
+    radial-gradient(
+        circle at 40% 10%,
+        rgba(255, 255, 255, 0.3) 0.8px,
+        transparent 1px
+      )
+      no-repeat 20% 5%,
+    radial-gradient(
+        circle at 70% 80%,
+        rgba(255, 255, 255, 0.25) 0.7px,
+        transparent 0.9px
+      )
+      no-repeat 60% 95%,
+    radial-gradient(
+        circle at 20% 30%,
+        rgba(255, 255, 255, 0.4) 1px,
+        transparent 1.2px
+      )
+      no-repeat 10% 40%,
+    radial-gradient(
+        circle at 50% 60%,
+        rgba(255, 255, 255, 0.35) 0.9px,
+        transparent 1.1px
+      )
+      no-repeat 40% 10%,
+    radial-gradient(
+        circle at 85% 25%,
+        rgba(255, 255, 255, 0.4) 1px,
+        transparent 1.2px
+      )
+      no-repeat 75% 30%,
+    radial-gradient(
+        circle at 15% 95%,
+        rgba(255, 255, 255, 0.2) 0.6px,
+        transparent 0.8px
+      )
+      no-repeat 20% 65%,
+    /* 중간 크기 별들 (더 밝고 눈에 띄게) */
+      radial-gradient(
+        circle at 25% 40%,
+        rgba(255, 255, 255, 0.6) 1.5px,
+        transparent 1.8px
+      )
+      no-repeat 50% 50%,
+    radial-gradient(
+        circle at 75% 15%,
+        rgba(255, 255, 255, 0.5) 1.3px,
+        transparent 1.6px
+      )
+      no-repeat 15% 80%,
+    radial-gradient(
+        circle at 45% 85%,
+        rgba(255, 255, 255, 0.7) 1.8px,
+        transparent 2.1px
+      )
+      no-repeat 85% 20%,
+    radial-gradient(
+        circle at 10% 70%,
+        rgba(255, 255, 255, 0.55) 1.4px,
+        transparent 1.7px
+      )
+      no-repeat 30% 10%,
+    /* 큰 별들 (가장 밝고 반짝임 강조) */
+      radial-gradient(
+        circle at 50% 50%,
+        var(--star-twinkle-color) 2px,
+        transparent 2.5px
+      )
+      no-repeat 60% 30%,
+    radial-gradient(
+        circle at 70% 30%,
+        var(--star-twinkle-color) 2.2px,
+        transparent 2.7px
+      )
+      no-repeat 10% 90%,
+    radial-gradient(
+        circle at 30% 90%,
+        var(--star-twinkle-color) 2.5px,
+        transparent 3px
+      )
+      no-repeat 90% 60%;
+
+  background-size:
+        /* 작은 별들 */ 30px 30px, 35px 35px, 40px 40px,
+    38px 38px, 32px 32px, 36px 36px, 30px 30px, 34px 34px, 39px 39px, 37px 37px,
+    33px 33px, 35px 35px, /* 중간 별들 */ 50px 50px, 55px 55px, 60px 60px,
+    58px 58px, /* 큰 별들 */ 70px 70px, 75px 75px, 80px 80px;
+
+  animation: moveStars 800s linear infinite; /* 애니메이션 시간 대폭 증가 (훨씬 느리게, 광활한 우주 느낌) */
+  opacity: 1; /* 전체 투명도 1로 유지 */
+  z-index: -1; /* 타임라인 내용 뒤에, 깜빡이는 오버레이보다 아래에 */
+}
+
+/* 별 움직임 애니메이션 - to 값도 더 크게 (더 긴 거리를 이동하는 느낌) */
+@keyframes moveStars {
+  to {
+    background-position: 20000px 20000px, /* 작은 별 1 */ -25000px -25000px,
+      /* 작은 별 2 */ 22000px -22000px, /* 작은 별 3 */ -23000px 23000px,
+      /* 작은 별 4 */ 28000px 0, /* 작은 별 5 */ -26000px 18000px,
+      /* 작은 별 6 */ 27000px -22000px, /* 작은 별 7 */ -24000px -27000px,
+      /* 작은 별 8 */ 29000px 10000px, /* 작은 별 9 */ -30000px -15000px,
+      /* 작은 별 10 */ 21000px 19000px, /* 작은 별 11 */ -28000px -23000px,
+      /* 작은 별 12 */ -25000px 18000px, /* 중간 별 1 */ 20000px -25000px,
+      /* 중간 별 2 */ -22000px -22000px, /* 중간 별 3 */ 26000px 15000px,
+      /* 중간 별 4 */ 28000px 0, /* 큰 별 1 */ -26000px 26000px,
+      /* 큰 별 2 */ 24000px -20000px; /* 큰 별 3 */
+  }
+}
+
+.timeline .history-txt {
+  width: auto;
+  max-width: 500px;
+  margin: 0 auto 60px auto;
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--light-text-color);
+  padding: 2.5rem 3rem;
+  background: var(--secondary-bg);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 32px var(--box-shadow-color);
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+  border-left: 8px solid var(--accent-color);
+  transition: box-shadow 0.3s, transform 0.3s;
+  position: relative;
+  z-index: 3;
+  /* 텍스트 배경에도 은은한 빛 효과 추가 */
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.timeline .history-txt:hover {
+  box-shadow: 0 8px 40px var(--shadow-color), 0 0 60px var(--accent-light); /* 호버 시 더 강한 빛 */
+  transform: translateY(-5px);
+}
+
+/* 별 깜빡임 효과 (가장 전면의 별들) - ::before를 별도 별 레이어로 활용 */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* 더 크고 밝은 별들 (반짝임 효과) */
+  background: radial-gradient(
+        circle at 12% 80%,
+        rgba(255, 255, 255, 0.9) 2.5px,
+        transparent 3px
+      )
+      no-repeat 5% 5%,
+    radial-gradient(
+        circle at 88% 20%,
+        rgba(255, 255, 255, 0.8) 2px,
+        transparent 2.5px
+      )
+      no-repeat 90% 90%,
+    radial-gradient(
+        circle at 40% 60%,
+        rgba(255, 255, 255, 1) 3px,
+        transparent 3.5px
+      )
+      no-repeat 30% 40%,
+    radial-gradient(
+        circle at 60% 10%,
+        rgba(255, 255, 255, 0.7) 1.8px,
+        transparent 2.2px
+      )
+      no-repeat 70% 70%;
+  background-size: 80px 80px, 90px 90px, 100px 100px, 75px 75px;
+  animation: star-twinkle 2s infinite ease-in-out alternate,
+    /* 밝고 어두워지는 반짝임 */ moveForegroundStars 300s linear infinite; /* 느리게 움직이는 전경 별들 */
+  z-index: -2; /* ::after (배경별) 보다 뒤에 있지만, 실제 내용보다는 앞에 */
+  opacity: 1; /* 초기 투명도를 1로 유지 */
+}
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes moveForegroundStars {
+  to {
+    background-position: -10000px -10000px, 12000px 12000px, -8000px 10000px,
+      10000px -8000px;
+  }
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--line-gradient-start),
+    var(--line-gradient-middle),
+    var(--line-gradient-end)
+  );
+  background-size: 100% 300%;
+  animation: flow 3s linear infinite;
+  transform: translateX(-50%);
+  box-shadow: 0 0 25px var(--accent-light), 0 0 50px var(--accent-color),
+    0 0 80px rgba(255, 215, 0, 0.1); /* 라인에 더 풍부한 빛 효과 */
+  z-index: 2;
+}
+
+@keyframes flow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+.timeline-intro {
+  position: absolute;
+  z-index: 999;
+}
+.timeline-item {
+  padding: 20px 40px;
+  position: relative;
+  width: 50%;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+  z-index: 5;
+  margin-top: 3rem;
+}
+
+.timeline-item.left {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item.right {
+  left: 50%;
+  text-align: left;
+}
+
+.timeline-item .content {
+  background: var(--secondary-bg);
+  padding: 25px;
+  border-radius: 12px;
+  color: var(--text-color);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid rgba(205, 127, 50, 0.2);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.1); /* 아이템 내용에도 은은한 그림자 */
+}
+
+.timeline-item .content h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: var(--accent-light);
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* h3 텍스트에 빛 효과 */
+}
+
+.timeline-item .content p {
+  color: var(--light-text-color);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  opacity: 0.9;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+.timeline-item .content:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 0 35px var(--shadow-color), 0 0 50px rgba(255, 215, 0, 0.2); /* 호버 시 더 강한 빛 */
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 35px;
+  width: 18px;
+  height: 18px;
+  background-color: var(--accent-light); /* 점 색상도 강조색으로 */
+  border-radius: 50%;
+  box-shadow: 0 0 15px 6px var(--shadow-color),
+    0 0 25px 8px rgba(255, 215, 0, 0.2); /* 점에 더 강한 빛 효과 */
+  z-index: 10;
+}
+
+.timeline-item.left::before {
+  right: -9px;
+}
+
+.timeline-item.right::before {
+  left: -9px;
+}
+
+.timeline-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== 로켓 ===== */
+.rocket {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: auto;
+  z-index: 1000;
+  transition: top 0.2s ease-out;
+  display: none; /* JS에서 제어 */
+  filter: drop-shadow(0 0 15px var(--shadow-color))
+    drop-shadow(0 0 30px rgba(255, 215, 0, 0.3));
+}
+
+.present .present-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  overflow: hidden;
+  background-color: var(--main-bg);
+  font-family: "Orbitron", sans-serif;
+  padding: 40px 0;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  width: 95%;
+  max-width: 1400px;
+  height: 600px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 25px;
+  box-shadow: 0 0 50px var(--box-shadow-color);
+  border: 1px solid rgba(255, 215, 0, 0.1); /* 테두리에 은은한 빛 */
+}
+
+.option {
+  position: relative;
+  flex: 1;
+  min-width: 180px;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 25px;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 2px solid transparent;
+}
+
+.option.active {
+  flex: 4;
+  max-width: 800px;
+  border-radius: 35px;
+  box-shadow: 0 0 35px var(--shadow-color), 0 0 70px rgba(255, 215, 0, 0.3); /* 활성화 시 더 강한 빛 */
+  transform: scale(1.03);
+  border: 2px solid var(--accent-color);
+}
+
+.option .shadow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.option .label {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  color: var(--light-text-color);
+  font-size: 1.4rem;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* 텍스트 그림자도 빛 느낌으로 */
+}
+
+.option .label .main {
+  font-weight: bold;
+  font-size: 1.7rem;
+  margin-bottom: 5px;
+}
+
+.option .label .sub {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* ===== 3D 캐러셀 섹션 ===== */
+.carousel-container {
+  position: relative;
+  width: 1000px;
+  height: 650px;
+  margin: 80px auto;
+  perspective: 1800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 50px var(--box-shadow-color), 0 0 80px rgba(255, 215, 0, 0.1); /* 컨테이너 그림자에 빛 효과 */
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.5); /* 배경을 더 어둡게 */
+  overflow: hidden;
+  border: 1px solid rgba(255, 215, 0, 0.2); /* 테두리에 은은한 빛 */
+}
+
+.carousel {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  transform-style: preserve-3d;
+  transition: transform 1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background: var(--secondary-bg);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  backface-visibility: hidden;
+  border: 2px solid var(--accent-color);
+  transition: transform 0.4s ease-out, box-shadow 0.4s ease,
+    border-color 0.4s ease;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.carousel-item:hover {
+  box-shadow: 0 0 40px var(--shadow-color), 0 0 60px rgba(255, 215, 0, 0.2); /* 호버 시 더 강한 빛 */
+  border-color: var(--accent-light);
+  z-index: 6;
+}
+
+.carousel-item.active {
+  box-shadow: 0 0 60px var(--accent-color), 0 0 100px rgba(255, 215, 0, 0.4); /* 활성화 시 더 강한 빛 */
+  border-color: var(--accent-light);
+  z-index: 20;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: transform 0.3s ease-out;
+}
+
+.carousel-item .item-info {
+  position: relative;
+  z-index: 2; /* 이미지 위에 텍스트가 보이도록 */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8),
+    transparent
+  ); /* 하단에 어두운 그라데이션 */
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+  color: var(--light-text-color);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+}
+
+.carousel-item .item-info h4 {
+  font-size: 2rem; /* 제목 크기 키움 */
+  margin-bottom: 5px;
+  color: var(--accent-light);
+  text-shadow: 0 0 10px var(--shadow-color);
+}
+
+.carousel-item .item-info p {
+  font-size: 1.2rem; /* 단락 크기 키움 */
+  opacity: 0.9;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(205, 127, 50, 0.6); /* 버튼 배경색 조정 */
+  color: var(--light-text-color);
+  border: none;
+  padding: 15px 20px;
+  border-radius: 50%; /* 원형 버튼 */
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 15;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 15px var(--shadow-color);
+}
+
+.carousel-btn:hover {
+  background: var(--accent-light);
+  transform: translateY(-50%) scale(1.1); /* 호버 시 살짝 커지게 */
+  box-shadow: 0 0 25px var(--accent-light);
+}
+
+.carousel-btn.prev {
+  left: 40px;
+}
+
+.carousel-btn.next {
+  right: 40px;
+}
+
+/* ======  (새로운 스타일) ====== */
+.timeline-intro,
+.present-intro,
+.exploration-intro {
+  width: auto;
+  max-width: 600px; /* present-txt보다 조금 더 넓게 */
+  margin: 0 auto 80px auto; /* 캐러셀과의 간격 조정 */
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--light-text-color);
+  padding: 3rem 3.5rem; /* 패딩 증가 */
+  background: linear-gradient(
+    135deg,
+    rgba(28, 28, 58, 0.7),
+    rgba(10, 10, 26, 0.7)
+  ); /* 어두운 그라데이션 배경 */
+  border-radius: 2rem; /* 모서리 더 둥글게 */
+  box-shadow: 0 8px 40px var(--box-shadow-color),
+    0 0 80px rgba(255, 215, 0, 0.3), inset 0 0 30px rgba(255, 215, 0, 0.05);
+  letter-spacing: 0.07em;
+  line-height: 1.8;
+  border: 2px solid var(--accent-color);
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-intro:hover,
+.present-intro:hover,
+.exploration-intro:hover {
+  box-shadow: 0 12px 60px var(--shadow-color),
+    /* 호버 시 그림자 강화 */ 0 0 100px var(--accent-light),
+    /* 호버 시 발광 강화 */ inset 0 0 50px rgba(255, 215, 0, 0.1);
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* 텍스트 내용에도 빛 효과 */
+.timeline-intro h3,
+.present-intro h3,
+.exploration-intro h3 {
+  font-size: 2.2rem; /* 제목 크기 더 키움 */
+  color: var(--accent-light);
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px var(--shadow-color), 0 0 30px rgba(255, 215, 0, 0.5);
+  display: flex; /* 아이콘과 텍스트 정렬 */
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px; /* 아이콘과 텍스트 사이 간격 */
+}
+
+.timeline-intro p,
+.present-intro p,
+.exploration-intro p {
+  font-size: 1.3rem; /* 단락 크기 키움 */
+  color: var(--text-color);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+  opacity: 0.9;
+}
+
+/* 로켓 아이콘 스타일 */
+.exploration-intro .rocket-icon {
+  font-size: 2.8rem; /* 아이콘 크기 조정 */
+  vertical-align: middle;
+  animation: bounceAndGlow 2s infinite ease-in-out alternate; /* 아이콘 애니메이션 */
+}
+
+@keyframes bounceAndGlow {
+  0% {
+    transform: translateY(0);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    transform: translateY(-10px);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+  }
+  100% {
+    transform: translateY(0);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* 캐러셀 컨테이너 및 아이템의 마진/패딩 조정 (필요에 따라) */
+.carousel-container {
+  margin-top: 100px; /* 헤더와의 간격 조정 */
+}
+
+/* footer///////////////////////// */
+#footer {
+  width: 100%;
+  background-color: #000;
+}
+.container {
+  max-width: 1280px;
+  height: inherit;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+.row {
+  padding: 0 14px;
+  /* background-color: rgba(255, 0, 0, 0.1); */
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  padding: 6.25rem 0; /* 100px → 6.25rem (16px 기준) */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* 반응형에서 요소가 줄 바꿈되도록 추가 */
+}
+.footer > div {
+  height: 3.75rem; /* 60px → 3.75rem */
+}
+
+.footer .f_logo {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #5eb0e5; */
+}
+.footer .f_logo a {
+}
+.footer .f_logo a img {
+  width: 270px;
+  /* background-color: #6b2be2; */
+}
+
+.footer .f_copy {
+  width: 50%;
+  padding: 0.125rem; /* 2px → 0.125rem */
+  /* background-color: #caca50; */
+  font-family: "Pretendard-Light";
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  height: auto;
+}
+.footer .f_copy ul {
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap; /* 반응형에서 리스트 항목 줄 바꿈 허용 */
+}
+.footer .f_copy ul li {
+  position: relative;
+}
+.footer .f_copy ul li strong {
+  color: #fff;
+  font-size: 16px;
+}
+.footer .f_copy ul li a {
+  color: #fff;
+  font-size: 16px;
+  opacity: 0.8;
+  /* background-color: #66ff66; */
+}
+.footer .f_copy ul li a:hover {
+  opacity: 1;
+  color: #6b2be2;
+}
+.footer .f_copy ul li a:hover span {
+  opacity: 0.8;
+  color: #fff;
+}
+.footer .f_copy ul li a span {
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.footer .f_copy ul li span.colon {
+  display: inline-block;
+}
+
+.footer .f_copy p {
+  width: 100%;
+  color: #fff;
+  font-size: 16px;
+  /* background-color: #6666ff; */
+  text-align: left;
+}
+.footer .f_sns {
+  width: 25%;
+  /* background-color: lightcoral; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.footer .f_sns a {
+}
+.footer .f_sns a img {
+  width: 50px;
+  opacity: 0.7;
+}
+.footer .f_sns a img:hover {
+  opacity: 1;
+}
+
+/* 플로팅 버튼 영역 */
+.floating-buttons {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.floating-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.top-btn {
+  background: linear-gradient(
+    135deg,
+    var(--accent-light),
+    rgba(255, 215, 0, 0.3)
+  );
+  opacity: 0;
+  visibility: hidden;
+}
+
+.top-btn:hover {
+  background: linear-gradient(135deg, #9d3cf3, #7b1edb);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+}
+
+.home-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+}
+
+.home-btn:hover {
+  background: linear-gradient(135deg, #ff7b7b, #ff6b6b);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.floating-btn i {
+  transition: transform 0.3s ease;
+}
+
+.floating-btn:hover i {
+  transform: scale(1.1);
+}

@@ -1,0 +1,1609 @@
+@charset "utf-8";
+
+/* ----폰트(Orbitron)---- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+/* font-family: "Orbitron", sans-serif; */
+
+/* ----폰트(Roboto)---- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+/* font-family: "Roboto", sans-serif; */
+
+/* ----폰트(Pretendard)---- */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ===== #circle 영역 - 961px 이상 고정 높이 ===== */
+@media(min-width: 961px) {
+  #circle article {
+    height: 800px; /* 961px 이상에서는 고정 높이 */
+  }
+  
+  #circle article .inner {
+    height: 800px; /* 961px 이상에서는 고정 높이 */
+  }
+  
+  #circle article .inner > div {
+    height: 800px; /* 961px 이상에서는 고정 높이 */
+  }
+}
+
+
+h1, p, label, span{
+    font-family: 'Pretendard-Regular';
+}
+h1{
+    font-weight: 400;
+    color: #fff;
+}
+h2{}
+button{
+    all: unset;
+}
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+
+:root {
+  --mercury-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/mercury2.jpg);
+  --mercury-tilt: rotate(0.034deg);
+  --mercury-day: 1407.6;
+  --mercury-color: #999999;
+
+  --venus-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/venus2.jpg);
+  --venus-tilt: rotate(177.3deg);
+  --venus-day: 5832.5;
+  --venus-color: #e8cda2;
+
+  --earth-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/earth.jpg);
+  --earth-tilt: rotate(23.26deg);
+  --earth-day: 23.9;
+  --earth-color: #b3caff;
+
+  --mars-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/mars.jpg);
+  --mars-tilt: rotate(25.2deg);
+  --mars-day: 24.6;
+  --mars-color: #c07158;
+
+  --jupiter-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/jupiter.jpg);
+  --jupiter-tilt: rotate(3.1deg);
+  --jupiter-day: 9.9;
+  --jupiter-color: #c9b5a4;
+
+  --saturn-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/saturn.jpg);
+  --saturn-tilt: rotate(26.7deg);
+  --saturn-day: 10.7;
+  --saturn-color: #f0e2c4;
+
+  --uranus-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/uranus2.jpg);
+  --uranus-tilt: rotate(97.8deg);
+  --uranus-day: 17.2;
+  --uranus-color: #b8d8e1;
+
+  --neptune-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/neptune.jpg);
+  --neptune-tilt: rotate(28.3deg);
+  --neptune-day: 16.1;
+  --neptune-color: #5e73bb;
+
+    --yellow-5: hsl(45, 100%, 50%);
+    --yellow-8: hsl(45, 100%, 35%);
+    --gray-8: hsl(240, 4%, 25%);
+    --gray-9: hsl(240, 4%, 15%);
+    --font-size-fluid-3: 1.25rem;
+    --font-weight-9: 700;
+    --size-2: 0.5rem;
+    --size-4: 0.75rem;
+
+    --color: var(--yellow-5);
+    --shadow: var(--yellow-8);
+    --glare: hsl(0 0% 100% / 0.75);
+    --font-size: var(--font-size-fluid-3);
+    --transition: 0.2s;
+}
+
+@keyframes planetRotate {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+
+#wrap{
+    width: 100%;
+    height: 100vh;
+    position: relative; /* fixed에서 relative로 변경하여 기준점 통일 */
+    perspective: 1600px;  /* 투영점 지정하기 */
+    font-family: "Orbitron", sans-serif;
+}
+body{
+    font: 17px/1.4 "Orbitron";
+    letter-spacing: 1px;
+    color: #ddd;
+    background-color: #000;
+    overflow: hidden;
+    /* 플리커 현상 방지를 위한 설정 */
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* 배경화면_shooting_star */
+section.shooting_star{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../images/sub2/background_02.jpg");
+    background-size: cover;
+    animation: animateBg 40s linear infinite;
+}
+@keyframes animateBg{
+    0%,100%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.3);
+    }
+}
+
+/* 별똥별 효과 */
+.shooting_star span{
+    position: absolute;
+    top:50%;
+    left:50%;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.1),
+    0 0 0 8px rgba(255,255,255,0.1),
+    0 0 20px rgba(255,255,255,0.1);
+    animation: animate 3s linear infinite;
+}
+.shooting_star span::before{
+    content:'';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg,#fff,transparent);
+}
+@keyframes animate{
+    0%
+    {
+        transform: rotate(315deg) translateX(0);
+        opacity: 1;
+    }
+    70%
+    {opacity: 1;}
+    100%
+    {
+        transform: rotate(315deg) translateX(-1000px);
+        opacity: 0;
+    }
+}
+.shooting_star span:nth-child(1){
+    top: 0;
+    right: 0;
+    left: initial;
+    animation-delay: 0s;
+    animation-duration: 1s;
+}
+.shooting_star span:nth-child(2){
+    top: 0;
+    right: 80px;
+    left: initial;
+    animation-delay: 0.2s;
+    animation-duration: 3s;
+}
+.shooting_star span:nth-child(3){
+    top: 80;
+    right: 0px;
+    left: initial;
+    animation-delay: 0.4s;
+    animation-duration: 12s;
+}
+.shooting_star span:nth-child(4){
+    top: 0;
+    right: 180px;
+    left: initial;
+    animation-delay: 0.6s;
+    animation-duration: 5s;
+}
+.shooting_star span:nth-child(5){
+    top: 0;
+    right: 400px;
+    left: initial;
+    animation-delay: 0.8s;
+    animation-duration: 2.5s;
+}
+.shooting_star span:nth-child(6){
+    top: 0;
+    right: 600px;
+    left: initial;
+    animation-delay: 1.4s;
+    animation-duration: 8s;
+}
+.shooting_star span:nth-child(7){
+    top: 300px;
+    right: 0px;
+    left: initial;
+    animation-delay: 7s;
+    animation-duration: 1.75s;
+}
+.shooting_star span:nth-child(8){
+    top: 0px;
+    right: 700px;
+    left: initial;
+    animation-delay: 3s;
+    animation-duration: 1.25s;
+}
+.shooting_star span:nth-child(9){
+    top: 0px;
+    right: 1000px;
+    left: initial;
+    animation-delay: 0.75s;
+    animation-duration: 2.25s;
+}
+.shooting_star span:nth-child(10){
+    top: 0px;
+    right: 450px;
+    left: initial;
+    animation-delay: 2.75s;
+    animation-duration: 2.75s;
+}
+
+
+
+
+/* 각 카드 일괄 수정 */
+#circle{
+    width: 600px;
+    /* height: 800px; */
+    height: calc(600px * 8/6);
+    position: absolute; /* fixed에서 absolute로 변경하여 #wrap 기준점 사용 */
+    top: 50%;left: 50%;
+    /* margin-left: -300px; */
+    margin-left: calc(-300px);
+    /* margin-top: -400px; */
+    margin-top: calc(-400px);
+    transform-style: preserve-3d;
+    animation: ani linear 30s infinite;
+
+    /* 플리커 현상 방지를 위한 설정 */
+    /* will-change: transform; */
+    /* backface-visibility: hidden; */
+    /* -webkit-backface-visibility: hidden; */
+    z-index: 10; /* 푸터(0)보다 높은 z-index로 설정하여 마우스 이벤트 우선권 확보 */
+    pointer-events: auto; /* 명시적으로 마우스 이벤트 활성화 */
+}
+@keyframes ani{
+    0%{transform: rotateY(0deg);}
+    100%{transform: rotateY(360deg);}
+}
+#circle article{
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;left: 0;
+    /* display: none; */
+    backface-visibility: hidden;
+}
+#circle article h1{
+    font-size: clamp(20px, 2.5vw, 40px);
+    /* background-color: red; */
+    position: absolute;
+    top: 0;left: 0;
+    opacity: 0;
+    transition: all .5s;
+}
+#circle article:hover h1,
+#circle article:active h1,
+#circle article:focus h1{
+    top: -60px;
+    opacity: 1;
+}
+#circle article .inner{
+    width: 100%;
+    height: 100%; /* 961px 이상에서는 고정 높이, 960px 이하에서는 반응형 */
+    position: relative;
+}
+#circle article .inner > div{
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.06);
+    padding: clamp(30px, 5vw, 50px);
+    overflow: hidden;
+    opacity: 0.6;
+    transition: all 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; /* 클릭 가능함을 명시 */
+    touch-action: manipulation; /* 모바일 터치 최적화 */
+    -webkit-tap-highlight-color: transparent; /* 모바일 터치 하이라이트 제거 */
+    
+}
+#circle article .inner > div:hover,
+#circle article .inner > div:active,
+#circle article .inner > div:focus{
+    background-color: rgba(255,255,255,0.15);
+    opacity: 1.2;
+    transform: scale(1.04);
+}
+#circle article .inner > div img{
+    max-width: 500px;
+    max-height: 500px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 2s;
+}
+#circle article:nth-child(6) .inner > div img{
+  margin-top: clamp(0.1em, 5vw, 1em);
+}
+#circle article .inner > div:hover img,
+#circle article .inner > div:active img,
+#circle article .inner > div:focus img{
+    transform: scale(1.12);
+}#circle article:nth-child(6) .inner > div:hover img,
+#circle article:nth-child(6) .inner > div:active img,
+#circle article:nth-child(6) .inner > div:focus img{
+  transform: scale(1.3);
+}
+
+
+/* 행성이름 */
+#circle article .inner>div h2{
+    transition: all 0.5s;
+    text-align: center;
+    font-size: clamp(30px, 4vw, 60px);
+}
+#circle article:nth-child(6) .inner>div h2{
+  /* margin-top: 1.4em; */
+  margin-top: clamp(0.1em, 5vw, 1.4em);
+}
+
+#circle article .inner > div > p{
+    margin-top: 10px;
+    text-align: center;
+    font-size: clamp(13px, 3vw, 28px);
+    text-shadow: 0 0 3px black;
+}
+
+/* #circle 내부 링크 스타일 추가 */
+#circle article .inner > div > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer; /* 링크 클릭 가능함을 명시 */
+    touch-action: manipulation; /* 모바일 터치 최적화 */
+    -webkit-tap-highlight-color: transparent; /* 모바일 터치 하이라이트 제거 */
+}
+
+/* 모바일 터치 지원을 위한 추가 스타일 */
+@media (hover: none) and (pointer: coarse) {
+    /* 터치 디바이스에서 hover 효과를 active로 대체 */
+    #circle article .inner > div:hover,
+    #circle article .inner > div:active,
+    #circle article .inner > div:focus {
+        background-color: rgba(255,255,255,0.15);
+        opacity: 1.2;
+        transform: scale(1.04);
+    }
+    
+    #circle article .inner > div > a:hover,
+    #circle article .inner > div > a:active,
+    #circle article .inner > div > a:focus {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+    
+    /* 터치 시 즉시 반응하도록 transition 시간 단축 */
+    #circle article .inner > div,
+    #circle article .inner > div > a {
+        transition: all 0.2s ease;
+    }
+}
+
+
+
+
+/* 행성여행 클릭버튼 */
+#circle article .inner .explore{
+      display: grid;
+      /* display: none; */
+      place-items: center;
+      height: clamp(30px, 5vw, 50px);
+      font-family: 'Google Sans', sans-serif, system-ui;
+      /* background: var(--gray-9); */
+    }
+
+    #circle article .inner .explore > .a {
+        margin-top: clamp(10px, 2vw, 20px);
+      --padding: var(--size-2);
+      padding: var(--padding);
+      margin-top: -5px;
+      border-radius: var(--size-4);
+      text-decoration: none;
+      color: transparent;
+      position: relative;
+      transition: background 0.2s;
+      
+      --hover: 0.4;
+      --pos: 0;
+    }
+
+    #circle article .inner > div > a:hover .explore > .a,
+#circle article .inner > div > a:active .explore > .a,
+#circle article .inner > div > a:focus .explore > .a {
+  /* background: var(--gray-8); */
+  background-color: rgba(0, 0, 0, 0.2);
+  --hover: 1;
+  --pos: 1;
+}
+
+
+    #circle article .inner .explore > .a:active {
+      --hover: 0;
+    }
+
+    #circle article .inner .explore > .a > span {
+      display: inline-block;
+      font-size: calc(var(--font-size) * 1.2);
+      /* font-weight: var(--font-weight-9); */
+      transition: all 0.4s;
+      text-decoration: none;
+      text-shadow:
+        calc(var(--hover) * (var(--font-size) * -0.02)) calc(var(--hover) * (var(--font-size) * 0.02)) var(--shadow),
+        calc(var(--hover) * (var(--font-size) * -0.04)) calc(var(--hover) * (var(--font-size) * 0.04)) var(--shadow),
+        calc(var(--hover) * (var(--font-size) * -0.06)) calc(var(--hover) * (var(--font-size) * 0.06)) var(--shadow),
+        calc(var(--hover) * (var(--font-size) * -0.08)) calc(var(--hover) * (var(--font-size) * 0.08)) var(--shadow),
+        calc(var(--hover) * (var(--font-size) * -0.10)) calc(var(--hover) * (var(--font-size) * 0.10)) var(--shadow);
+      transform: translate(calc(var(--hover) * (var(--font-size) * 0.10)), calc(var(--hover) * (var(--font-size) * -0.10)));
+      opacity: 0;
+    }
+
+    #circle article .inner .explore > .a > span:last-of-type {
+      position: absolute;
+      inset: var(--padding);
+      background: linear-gradient(
+        108deg,
+        transparent 0 55%,
+        var(--glare) 55% 60%,
+        transparent 60% 70%,
+        var(--glare) 70% 85%,
+        transparent 85%
+      ) calc(var(--pos) * -200%) 0% / 200% 100%, var(--color);
+      -webkit-background-clip: text;
+      color: transparent;
+      z-index: 2;
+      text-shadow: none;
+      transform: translate(calc(var(--hover) * (var(--font-size) * 0.10)), calc(var(--hover) * (var(--font-size) * -0.10)));
+      transition: transform 0.2s, background-position 0s;
+      opacity: 0;
+    }
+
+    #circle article .inner > div > a:hover .explore > .a span:last-of-type,
+#circle article .inner > div > a:active .explore > .a span:last-of-type,
+#circle article .inner > div > a:focus .explore > .a span:last-of-type {
+  transition: transform 0.2s, background-position calc(var(--hover) * 1.5s) calc(var(--hover) * 0.25s);
+}
+#circle article .inner > div > a:hover .explore > .a span,
+#circle article .inner > div > a:active .explore > .a span,
+#circle article .inner > div > a:focus .explore > .a span{
+    opacity: 1;
+  transition: all 2s;
+
+}
+
+    #circle article .inner .explore > .a svg {
+      position: absolute;
+      z-index: 3;
+      width: calc(var(--font-size) * 0.9);
+      aspect-ratio: 1;
+      --delay-step: 0.15;
+      transform: translate(-50%, -50%) scale(0);
+    }
+
+    #circle article .inner .explore > .a svg path {
+      fill: var(--glare);
+    }
+
+    
+    #circle article .inner > div > a:hover .explore > .a svg,
+    #circle article .inner > div > a:active .explore > .a svg,
+    #circle article .inner > div > a:focus .explore > .a svg {
+      animation: sparkle 1s calc((var(--delay-step) * var(--d)) * 2s) both infinite;
+    }
+    @keyframes sparkle {
+      50% {
+        transform: translate(-50%, -50%) scale(var(--s, 1));
+      }
+    }
+
+    #circle article .inner .explore > .a svg:nth-of-type(1) {
+      --x: 0;
+      --y: 20;
+      --s: 1.1;
+      --d: 1;
+      top: calc(var(--y) * 1%);
+      left: calc(var(--x) * 1%);
+    }
+
+    #circle article .inner .explore > .a svg:nth-of-type(2) {
+      --x: 15;
+      --y: 80;
+      --s: 1.25;
+      --d: 2;
+      top: calc(var(--y) * 1%);
+      left: calc(var(--x) * 1%);
+    }
+
+    #circle article .inner .explore > .a svg:nth-of-type(3) {
+      --x: 45;
+      --y: 40;
+      --s: 1.1;
+      --d: 3;
+      top: calc(var(--y) * 1%);
+      left: calc(var(--x) * 1%);
+    }
+
+    #circle article .inner .explore > .a svg:nth-of-type(4) {
+      --x: 75;
+      --y: 60;
+      --s: 0.9;
+      --d: 2;
+      top: calc(var(--y) * 1%);
+      left: calc(var(--x) * 1%);
+    }
+
+    #circle article .inner .explore > .a svg:nth-of-type(5) {
+      --x: 100;
+      --y: 30;
+      --s: 0.8;
+      --d: 4;
+      top: calc(var(--y) * 1%);
+      left: calc(var(--x) * 1%);
+    }
+
+
+
+
+
+
+
+/* face1 */
+#circle .face1{
+    /* display: block; */
+}
+#circle .face1 .inner>div:hover h2,
+#circle .face1 .inner>div:active h2,
+#circle .face1 .inner>div:focus h2{
+    color: #a4856b;
+    text-shadow: 0 0 14px #4d7da0;
+}
+
+
+
+
+
+/* face2 */
+#circle .face2{
+    /* display: block; */
+}
+#circle .face2 .inner>div:hover h2,
+#circle .face2 .inner>div:active h2,
+#circle .face2 .inner>div:focus h2{
+    color: #e8cda2;
+    text-shadow: 0 0 14px #98a04d;
+}
+
+
+
+/* face3 */
+#circle .face3{
+    /* display: block; */
+}
+#circle .face3 .inner>div:hover h2,
+#circle .face3 .inner>div:active h2,
+#circle .face3 .inner>div:focus h2{
+    color: #b3caff;
+    text-shadow: 0 0 17px #098502;
+}
+
+
+
+/* face4 */
+#circle .face4{
+    /* display: block; */
+}
+#circle .face4 .inner>div:hover h2,
+#circle .face4 .inner>div:active h2,
+#circle .face4 .inner>div:focus h2{
+    color: #e13131;
+    text-shadow: 0 0 14px #e19405;
+}
+
+
+
+/* face5 */
+#circle .face5{
+    /* display: block; */
+}
+#circle .face5 .inner>div:hover h2,
+#circle .face5 .inner>div:active h2,
+#circle .face5 .inner>div:focus h2{
+    color: #b45401;
+    text-shadow: 0 0 14px #021c85;
+}
+
+
+/* face6 */
+#circle .face6{
+    /* display: block; */
+}
+#circle .face6 .inner>div:hover h2,
+#circle .face6 .inner>div:active h2,
+#circle .face6 .inner>div:focus h2{
+    color: #b3caff;
+    text-shadow: 0 0 14px #ddff00;
+}
+
+
+
+/* face7 */
+#circle .face7{
+    /* display: block; */
+}
+#circle .face7 .inner>div:hover h2,
+#circle .face7 .inner>div:active h2,
+#circle .face7 .inner>div:focus h2{
+    color: #acc5fe;
+    text-shadow: 0 0 14px #ffffff;
+}
+
+
+
+/* face8 */
+#circle .face8{
+    /* display: block; */
+}
+#circle .face8 .inner>div:hover h2,
+#circle .face8 .inner>div:active h2,
+#circle .face8 .inner>div:focus h2{
+    color: #023fce;
+    text-shadow: 0 0 14px #32ddff;
+}
+
+
+
+/* 회전 */
+.face1{transform: rotateY(0deg) translateZ(-764px);}
+.face2{transform: rotateY(-45deg) translateZ(-764px);}
+.face3{transform: rotateY(-90deg) translateZ(-764px);}
+.face4{transform: rotateY(-135deg) translateZ(-764px);}
+.face5{transform: rotateY(-180deg) translateZ(-764px);}
+.face6{transform: rotateY(-225deg) translateZ(-764px);}
+.face7{transform: rotateY(-270deg) translateZ(-764px);}
+.face8{transform: rotateY(-315deg) translateZ(-764px);}
+
+
+/* 원의 넓이 = 반지름 * 반지름 * 3.14 */
+/* 사각형의 넓이 = 가로 (600*8) * 세로 */
+
+/* 반지름 * 반지름 * 3.14 = 4800 */
+
+
+
+
+
+/* -------------------------------------- */
+    /* --------- 팝업 컨텐츠 ---------- */
+/* -------------------------------------- */
+
+.sub_swiper{
+	width: 85vmin;
+    height: 65vmin;
+    position: relative;
+}
+
+.sub_wrap {
+	display: grid;
+	/* display: flex; */
+	place-items: center;
+	margin: 0;
+	padding: 0;
+	/* font-family: "Martel Sans", sans-serif; */
+}
+
+.wrap {
+	/* display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between; */
+	width: 100%;
+	height: 65vmin;
+	margin: 2rem auto;
+	border: 8px solid #171717cb;
+	transition: 0.2s ease-in-out;
+	position: relative;
+	overflow: hidden;
+}
+.wrap .overlay {
+	position: relative;
+	/* display: flex; */
+    display: block;
+	width: 100%;
+	height: 100%;
+	padding: 1rem 0.75rem;
+	background-color: #003153;
+	background-image: linear-gradient(315deg, #003153 0%, #0f0e0e 74%);
+	transition: 0.4s ease-in-out;
+	z-index: 1;
+}
+/* 초기 로딩 상태에서는 hover 효과 비활성화 */
+.wrap.initial-load .overlay {
+	transform: translateX(0);
+	transition: none;
+}
+
+.wrap.initial-load:hover .overlay {
+	transform: translateX(0);
+}
+
+/* 3초 후 hover 효과 활성화 */
+.wrap:not(.initial-load):hover .overlay {
+	transform: translateX(-60vmin);
+}
+.overlay .overlay-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 15vmin;
+	height: 100%;
+	padding: 0rem 0 0 1rem;
+	border: 3px solid;
+	border-image: linear-gradient(
+			to bottom,
+			#670167 5%,
+			rgb(78, 40, 90) 35% 65%,
+			#5A4FCF 95%
+		)
+		0 0 0 100%;
+	transition: 0.3s ease-in-out 0.2s;
+	z-index: 1;
+}
+/* 초기 로딩 상태에서는 overlay-content hover 효과 비활성화 */
+.wrap.initial-load:hover .overlay-content {
+	border: 3px solid;
+	border-image: linear-gradient(
+			to bottom,
+			#670167 5%,
+			rgb(78, 40, 90) 35% 65%,
+			#5A4FCF 95%
+		)
+		0 0 0 100%;
+	transition: 0.3s ease-in-out 0.2s;
+	transform: translateX(0);
+}
+
+/* 3초 후 hover 효과 활성화 */
+.wrap:not(.initial-load):hover .overlay-content {
+	border: none;
+	transition-delay: 0.1s;
+	transform: translateX(60vmin);
+}
+.overlay .overlay-content h1 {
+	font-size: clamp(20px, 5.25vmin, 50px);
+	/* font-size: 5.25vmin; */
+    /* font-size: 50px; */
+	text-align: center;
+	white-space: nowrap;
+	color: white;
+  text-shadow: 0 0 15px #1b1a07;
+
+}
+.overlay .overlay-content > p{
+	/* font-size: min(10pt, 2vmin); */
+	/* font-size: max(10pt, 2.5vmin); */
+
+	font-size: clamp(10px, 2vmin, 30px);
+	white-space: nowrap;
+  margin: 2.5rem 0 1rem 1rem;
+}
+
+
+.overlay .image-content {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 60vmin;
+	height: 100%;
+
+	background-size: cover;
+	transition: 0.3s ease-in-out;
+}
+/* 초기 로딩 상태에서는 image-content hover 효과 비활성화 */
+.wrap.initial-load:hover .image-content {
+	width: 60vmin;
+}
+
+/* 3초 후 hover 효과 활성화 */
+.wrap:not(.initial-load):hover .image-content {
+	width: 30vmin;
+}
+
+
+/* ---------------- */
+/* 내부 텍스트 */
+/* ---------------- */
+
+.wrap .text {
+	display: grid;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 60vmin;
+	height: 100%;
+    /* height: 100vmin; */
+	padding: 5vmin 8vmin;
+	background: #e7e7e7;
+	box-shadow: inset 1px 1px 15px 0 rgba(0 0 0 / 0.4);
+	overflow-y: scroll;
+	transform: translateZ(0);
+	will-change: scroll-position;
+}
+.wrap .text > p{
+	line-height: 2.2;
+	font-size: clamp(12px, 1.3vw, 20px);
+	position: relative;
+    color: #000;
+    margin-bottom: 2.5em;
+}
+.wrap .text > p:first-of-type{
+	/* margin-bottom: 2.5em; */
+}
+.wrap .text > p:first-of-type::after{
+	position: absolute;
+	top: 108%;
+	left: 5%;
+	content: "";
+	width: 90%;
+	height: 2px;
+	background-color: #bababa;
+}
+.wrap .text > p:last-of-type{
+	text-align: right;
+	font-size: clamp(8px, 0.7vw, 14px);
+	margin-top: 2.5em;
+	/* background-color: red; */
+}
+.wrap .text > p:nth-of-type(2)::after{
+	position: absolute;
+	top: 104%;
+	left: 5%;
+	content: "";
+	width: 90%;
+	height: 2px;
+	background-color: #bababa;
+}
+.wrap .text > p > strong{
+	text-transform: uppercase;
+}
+
+
+
+
+
+/* --------------------------------- */
+/* Animations and timing delays */
+/* --------------------------------- */
+.animate {
+	animation-duration: 0.7s;
+	animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
+	animation-fill-mode: backwards;
+}
+/* Pop In */
+.pop {
+	animation-name: pop;
+}
+@keyframes pop {
+	0% {
+		opacity: 0;
+		transform: scale(0.5, 0.5);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1, 1);
+	}
+}
+
+/* Slide In */
+.slide {
+	animation-name: slide;
+}
+@keyframes slide {
+	0% {
+		opacity: 0;
+		transform: translate(4em, 0);
+	}
+	100% {
+		opacity: 1;
+		transform: translate(0, 0);
+	}
+}
+
+/* Slide Left */
+.slide-left {
+	animation-name: slide-left;
+}
+@keyframes slide-left {
+	0% {
+		opacity: 0;
+		transform: translate(-40px, 0);
+	}
+	100% {
+		opacity: 1;
+		transform: translate(0, 0);
+	}
+}
+
+.slide-up {
+	animation-name: slide-up;
+}
+@keyframes slide-up {
+	0% {
+		opacity: 0;
+		transform: translateY(3em);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.delay-1 {
+	animation-delay: 0.2s;
+}
+.delay-2 {
+	animation-delay: 0.5s;
+}
+.delay-3 {
+	animation-delay: 0.8s;
+}
+.delay-4 {
+	animation-delay: 1s;
+}
+.delay-5 {
+	animation-delay: 1.3s;
+}
+.delay-6 {
+	animation-delay: 1.5s;
+}
+.delay-7 {
+	animation-delay: 1.8s;
+}
+.delay-8 {
+	animation-delay: 2s;
+}
+
+/* --------------------------------- */
+/* 페이지1 위 행성 */
+/* --------------------------------- */
+.card {
+  /* border: 2px solid #fff; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  /* margin: 80px 30px 30px 30px; */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 틸트선 */
+.card .card__planet::before {
+  content: '';
+  position: absolute;
+  height: 370px;
+  z-index: -2;
+  left: 50%;
+  top: 1.5vh;
+  border-left: 2px dashed rgba(255, 255, 255, 0.25);
+}
+
+/* 행성 본체 */
+.card .card__planet .planet__atmosphere {
+  height: 370px;
+  width: 370px;
+  position: relative;
+  top: 1.5vh;
+  /* background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 65%); */
+  border-radius: 50%;
+  overflow: hidden;
+}
+.card .card__planet .planet__atmosphere .planet__surface {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background-size: cover;
+}
+
+/* 행성 정보 전체 */
+.card__info {width: 100%;}
+.card__info .info__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: #fff;
+  margin-top: 3em;
+  padding: 0 2vw 0 3vw;
+  
+}
+/* 행성 정보 - 오른쪽 */
+.card__info .info__form .info__item {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 0.5em;
+  font-size: clamp(10px, 1.2vw ,18px);
+  /* font-family: "Major Mono Display", monospace; */
+}
+/* 행성 정보 - 왼쪽 */
+.card__info .info__form .info__item .info__label {
+  font-size: clamp(10px, 1.2vw ,18px);
+}
+/* 행성 정보 - 대시선 */
+.card__info .info__form .info__item .info__line {
+  flex: 1;
+  margin: 0 5px;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.3);
+}
+/* 행성 정보 틸트 화살표 */
+.card__info .info__form .info__item .tilt__icon {
+  margin: 0 0.5em;
+}
+
+
+
+/* --------------------------------- */
+/* Planet-specific styles of 수성*/
+/* --------------------------------- */
+.card--mercury .planet__atmosphere {
+  box-shadow: 
+  inset 10px 0 12px -2px rgba(255,255,255,0.2),
+              inset -70px 0 50px 0 black,
+              -5px 0 10px -4px var(--mercury-color);
+}
+.card--mercury .planet__surface {
+  background-image: var(--mercury-image);
+  transform: var(--mercury-tilt) scale(1.2);
+  animation: planetRotate calc(var(--mercury-day) * 0.1s) linear infinite;
+}
+.card--mercury .card__planet::before,
+.card--mercury .tilt__icon {
+  transform: var(--mercury-tilt) scale(1.2);
+  color: var(--mercury-color);
+}
+.card--mercury .card__planet::before {
+  border-color: var(--mercury-color);
+}
+
+/* Planet-specific styles of 금성*/
+.card--venus .planet__atmosphere {
+  box-shadow: 
+  inset 10px 0 12px -2px rgba(255,255,255,0.2),
+              inset -70px 0 50px 0 black,
+              -5px 0 10px -4px var(--venus-color);
+}
+.card--venus .planet__surface {
+  background-image: var(--venus-image);
+  transform: var(--venus-tilt) scale(1.2);
+  animation: planetRotate calc(var(--venus-day) * 0.1s) linear infinite;
+}
+.card--venus .card__planet::before,
+.card--venus .tilt__icon {
+  transform: var(--venus-tilt) scale(1.2);
+  color: var(--venus-color);
+}
+.card--venus .card__planet::before {
+  border-color: var(--venus-color);
+}
+
+
+/* Earth */
+.card--earth .planet__atmosphere {
+  box-shadow: inset 10px 0 12px -2px rgba(255,255,255,0.2),
+              inset -70px 0 50px 0 black,
+              -5px 0 10px -4px var(--earth-color);
+}
+.card--earth .planet__surface {
+  background-image: var(--earth-image);
+  transform: var(--earth-tilt) scale(1.2);
+  animation: planetRotate calc(var(--earth-day) * 0.1s) linear infinite;
+}
+.card--earth .card__planet::before,
+.card--earth .tilt__icon {
+  transform: var(--earth-tilt) scale(1.2);
+  color: var(--earth-color);
+}
+.card--earth .card__planet::before {
+  border-color: var(--earth-color);
+}
+
+/* mars */
+.card--mars .planet__atmosphere {
+  box-shadow: inset 10px 0 12px -2px rgba(255,255,255,0.2),
+              inset -70px 0 50px 0 black,
+              -5px 0 10px -4px var(--mars-color);
+}
+.card--mars .planet__surface {
+  background-image: var(--mars-image);
+  transform: var(--mars-tilt) scale(1.2);
+  animation: planetRotate calc(var(--mars-day) * 0.1s) linear infinite;
+}
+.card--mars .card__planet::before,
+.card--mars .tilt__icon {
+  transform: var(--earth-tilt) scale(1.2);
+  color: var(--mars-color);
+}
+.card--mars .card__planet::before {
+  border-color: var(--mars-color);
+}
+
+
+/* jupiter */
+.card--jupiter .planet__atmosphere {
+  box-shadow: inset 10px 0 12px -2px rgba(255,255,255,0.2),
+              inset -70px 0 50px 0 black,
+              -5px 0 10px -4px var(--jupiter-color);
+}
+.card--jupiter .planet__surface {
+  background-image: var(--jupiter-image);
+  transform: var(--jupiter-tilt) scale(1.2);
+  animation: planetRotate calc(var(--jupiter-day) * 0.1s) linear infinite;
+}
+.card--jupiter .card__planet::before,
+.card--jupiter .tilt__icon {
+  transform: var(--jupiter-tilt) scale(1.2);
+  color: var(--jupiter-color);
+}
+.card--jupiter .card__planet::before {
+  border-color: var(--jupiter-color);
+}
+
+/* saturn */
+.card--saturn .planet__atmosphere {
+  box-shadow: inset 10px 0 12px -2px rgba(255,255,255,0.2),
+              inset -70px 0 50px 0 black,
+              -5px 0 10px -4px var(--saturn-color);
+}
+.card--saturn .planet__surface {
+  background-image: var(--saturn-image);
+  transform: var(--saturn-tilt) scale(1.2);
+  animation: planetRotate calc(var(--saturn-day) * 0.1s) linear infinite;
+}
+.card--saturn .card__planet::before,
+.card--saturn .tilt__icon {
+  transform: var(--saturn-tilt) scale(1.2);
+  color: var(--saturn-color);
+}
+.card--saturn .card__planet::before {
+  border-color: var(--saturn-color);
+}
+
+/* uranus */
+.card--uranus .planet__atmosphere {
+  box-shadow: inset 10px 0 12px -2px rgba(255,255,255,0.2),
+              inset -70px 0 50px 0 black,
+              -5px 0 10px -4px var(--uranus-color);
+}
+.card--uranus .planet__surface {
+  background-image: var(--uranus-image);
+  transform: var(--uranus-tilt) scale(1.2);
+  animation: planetRotate calc(var(--uranus-day) * 0.1s) linear infinite;
+}
+.card--uranus .card__planet::before,
+.card--uranus .tilt__icon {
+  transform: var(--uranus-tilt) scale(1.2);
+  color: var(--uranus-color);
+}
+.card--uranus .card__planet::before {
+  border-color: var(--uranus-color);
+}
+
+/* neptune */
+.card--neptune .planet__atmosphere {
+  box-shadow: inset 10px 0 12px -2px rgba(255,255,255,0.2),
+              inset -70px 0 50px 0 black,
+              -5px 0 10px -4px var(--neptune-color);
+}
+.card--neptune .planet__surface {
+  background-image: var(--neptune-image);
+  transform: var(--neptune-tilt) scale(1.2);
+  animation: planetRotate calc(var(--neptune-day) * 0.1s) linear infinite;
+}
+.card--neptune .card__planet::before,
+.card--neptune .tilt__icon {
+  transform: var(--neptune-tilt) scale(1.2);
+  color: var(--neptune-color);
+}
+.card--neptune .card__planet::before {
+  border-color: var(--neptune-color);
+}
+
+
+
+
+
+
+
+
+
+
+/* ======================================= */
+/* ====== 팝업 관련 스타일 최종 수정 ====== */
+/* ======================================= */
+
+/* 팝업 전체를 덮는 컨테이너 */
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none; /* 초기에는 숨김 */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    box-sizing: border-box;
+}
+
+/* 가상요소로 prev, next 버튼 */
+.popup-container::before,
+.popup-container::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px; /* JavaScript의 buttonArea와 일치 */
+    height: 60px; /* JavaScript의 buttonArea와 일치 */
+    /* background-color: blue; 클릭 영역 시각화를 위한 파란색 배경 */
+    border: none;
+    cursor: pointer;
+    z-index: 10001;
+    transition: all 0.3s ease;
+    /* 모바일 터치 최적화 */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.popup-container::before {
+    left: calc(50% - 42.5vmin - 70px - 10px); /* JavaScript 계산과 일치: centerX - subSwiperWidth/2 - 70 - buttonArea/2 */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236b2be2'%3E%3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z'/%3E%3C/svg%3E");
+    background-size: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.popup-container::after {
+    right: calc(50% - 42.5vmin - 70px - 10px); /* JavaScript 계산과 일치: centerX + subSwiperWidth/2 + 70 - buttonArea/2 */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236b2be2'%3E%3Cpath d='M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z'/%3E%3C/svg%3E");
+    background-size: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.popup-container::before:hover,
+.popup-container::after:hover {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238a4de3'%3E%3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z'/%3E%3C/svg%3E");
+    transform: translateY(-50%) scale(1.1);
+}
+
+.popup-container::after:hover {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238a4de3'%3E%3Cpath d='M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z'/%3E%3C/svg%3E");
+}
+
+/* 닫기 버튼 */
+.popup-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 30px;
+    z-index: 10000;
+}
+
+/* ======================================= */
+/* ====== #circle Swiper 스타일 ====== */
+/* ======================================= */
+
+/* Swiper 네비게이션 버튼 스타일 */
+#circle .swiper-button-next,
+#circle .swiper-button-prev {
+    color: #8a4de3; /* 보라색 */
+    background-color: rgba(138, 77, 227, 0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+#circle .swiper-button-next:hover,
+#circle .swiper-button-prev:hover {
+    background-color: rgba(138, 77, 227, 0.2);
+    transform: scale(1.1);
+}
+
+#circle .swiper-button-next::after,
+#circle .swiper-button-prev::after {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Swiper 페이지네이션 스타일 */
+#circle .swiper-pagination-bullet {
+    background-color: #8a4de3;
+    opacity: 0.5;
+}
+
+#circle .swiper-pagination-bullet-active {
+    opacity: 1;
+    background-color: #8a4de3;
+}
+
+
+
+/* Main 요소 - 푸터의 기준점 설정 */
+main {
+    position: relative;
+    min-height: 100vh; /* 최소 높이 설정 */
+    overflow: hidden; /* 오버플로우 방지 */
+}
+
+/* 화면 하단 중앙 아이콘 */
+.bottom-center-icon {
+    position: absolute;
+    bottom: 20px; /* 하단에서 20px 위 */
+    left: 50%;
+    /* transform: translateX(-50%); */
+    z-index: 1; /* #circle(10)보다 위, 푸터보다 아래 */
+    color: #fff;
+    font-size: 40px;
+    width: 50px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    /* background-color: red; */
+}
+
+
+
+/* Footer 영역 */
+#sub2_footer {
+    width: 100%;
+    height: 150px; 
+    background-color: #000;
+    position: absolute; /* fixed에서 absolute로 변경하여 #wrap 기준점 사용 */
+    bottom: 0;
+    left: 0;
+    z-index: 12; /* z-index를 #circle(1)보다 낮게 설정하여 마우스 이벤트 방해 방지 */
+    transform: translateY(100%); /* 완벽하게 숨기기 위한 설정 */
+    transition: transform 0.5s ease-in-out;
+    /* 푸터가 레이아웃에 영향을 주지 않도록 설정 */
+    pointer-events: none;
+}
+
+#sub2_footer.show {
+    transform: translateY(0);
+    pointer-events: auto; /* 푸터가 표시될 때만 상호작용 가능 */
+    /* 푸터 내부 요소들만 클릭 가능하도록 설정 */
+}
+
+
+
+/* 푸터 내부 요소들에만 pointer-events 적용 */
+#sub2_footer.show .footer,
+#sub2_footer.show .footer * {
+    pointer-events: auto;
+}
+
+/* 푸터 영역에서 #circle과 겹치는 부분은 pointer-events 비활성화 */
+#sub2_footer.show::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    /* max-width: 1200px; */
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.row {
+    display: flex;
+    height: 101%;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Footer 스타일 */
+.footer{
+    width: 100%;
+    height: inherit;
+    /* padding: 1rem 0;  */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center; /* 세로 중앙 정렬 */
+    overflow: hidden; 
+}
+
+.footer > div{
+    height: auto; /* 자동 높이로 변경하여 내용에 맞춤 */
+    max-height: 3.75rem; /* 최대 높이 제한 */
+}
+
+.footer .f_logo{
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer .f_logo a img{
+    width: clamp(160px, 16vw, 270px);
+}
+
+.footer .f_copy{
+    width: 50%;
+    padding: 0.125rem;
+    font-family: 'Pretendard-Regular';
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+.footer .f_copy ul{
+    display: flex;
+    flex-wrap: nowrap; /* wrap에서 nowrap으로 변경하여 한 줄 유지 */
+}
+
+.footer .f_copy ul li{
+    position: relative;
+}
+
+.footer .f_copy ul li strong{
+    color: #fff;
+    font-size: 16px;
+}
+
+.footer .f_copy ul li a{
+    color: #fff;
+    font-size: clamp(12px, 1.3vw, 22px); /* 반응형 폰트 크기 조절 */
+    opacity: 0.8;
+}
+
+
+.footer .f_copy ul li a:hover{
+    opacity: 1;
+    color: #6b2be2;
+}
+
+.footer .f_copy ul li a:hover span{
+    opacity: 0.8;
+    color: #fff;
+}
+
+.footer .f_copy ul li a span{
+    font-size: 0.9rem;
+    font-weight: 900;
+}
+
+.footer .f_copy p{
+    width: 100%;
+    color: #fff;
+    font-size: clamp(12px, 1.4vw, 20px); 
+    text-align: left;
+}
+
+.footer .f_sns{
+    width: 25%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.footer .f_sns a img{
+    width: clamp(20px, 4vw, 50px);
+    opacity: 0.7;
+}
+
+.footer .f_sns a img:hover{
+  opacity: 1;
+}
+
+/* 플로팅 버튼 영역 */
+.floating-buttons {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.floating-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.top-btn {
+  background: linear-gradient(135deg, #8a2be2, #6a0dad);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.top-btn:hover {
+  background: linear-gradient(135deg, #9d3cf3, #7b1edb);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+}
+
+.home-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+}
+
+.home-btn:hover {
+  background: linear-gradient(135deg, #ff7b7b, #ff6b6b);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.floating-btn i {
+  transition: transform 0.3s ease;
+}
+
+.floating-btn:hover i {
+  transform: scale(1.1);
+}
+

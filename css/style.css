@@ -1,0 +1,908 @@
+@charset "utf-8";
+
+/* ----폰트(Orbitron)---- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+/* font-family: "Orbitron", sans-serif; */
+
+/* ----폰트(Roboto)---- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+/* font-family: "Roboto", sans-serif; */
+
+
+/* 스타일 시작 */
+
+/* 아이디 영역 -----------------------------------------------------------------------------*/
+body{
+  width: 100%;
+  overflow-x: hidden;
+}
+#banner{
+  width: 100%;
+  /* height: 100vh; */
+  /* background-color: #ccc; */
+}
+#contents1{
+  width: 100%;
+  /* height: 450px; */
+  background-color: #f5f1fd;
+}
+#contents2{
+  width: 100%;
+  /* height: 100vh; */
+  background-color: #f5f1fd;
+}
+#contents3{
+  width: 100%;
+  /* height: 100vh; */
+  background-color: #d1d4df;
+}
+#contents4{
+  width: 100%;
+  /* height: 100vh; */
+  background-color: #f5f1fd;
+}
+#footer{
+  width: 100%;
+  /* height: 260px; */
+  background-color: #000;
+}
+
+/* row 영역 -----------------------------------------------------------------------------*/
+.row{
+  margin: 0 auto;
+  width: 1280px;
+  height: inherit;
+  /* background-color: rgba(255, 0, 0, 0.2); */
+  padding: 0 2%;
+}
+
+
+/* ----------------------------------------------------------------------------------------- */
+/* 배너영역(혜란) ---------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------- */
+
+.banner {
+  background-color: #121212;
+  color: #d1d1d1;
+  font-family: "Orbitron", sans-serif;
+  margin: 0;
+  width: 100%;
+}
+
+.video-background-container {
+  /* position: relative;  */
+  /*자식 요소의 위치 기준 */
+  width: 100%;
+  height: 100vh; /* 뷰포트 높이만큼 설정 */
+  overflow: hidden; /* 비디오가 컨테이너를 벗어나지 않도록 */
+
+}
+
+.background-video {
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);  */
+  /* 비디오를 컨테이너 중앙으로 정렬 */ 
+  width: 100%;
+  height: 100vh;
+  z-index: 1; /* 다른 콘텐츠 뒤에 위치 */
+  opacity: 0.6; /* 비디오의 투명도를 조절하여 텍스트가 잘 보이게 함 */
+  object-fit: cover;
+  overflow: hidden;
+  /* iOS 호환성을 위한 추가 속성 */
+  -webkit-playsinline: true;
+  playsinline: true;
+}
+
+/* 비디오가 재생되지 않을 때 대체 배경 */
+.video-fallback {
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  z-index: 0;
+  opacity: 0.6;
+  display: none; /* 기본적으로 숨김 */
+}
+
+.typing-container {
+  /* 텍스트 컨테이너를 비디오 위에 정확히 중앙으로 배치 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center; /* 텍스트가 컨테이너 내에서 중앙 정렬되도록 */
+  font-family: "Orbitron", sans-serif;
+  font-size: 2.5rem;
+  white-space: pre-wrap;
+  width: 100%;
+  max-width: 800px;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+/* 기존 글리치 효과 및 키프레임은 그대로 사용 */
+.glitch-text {
+  display: inline-block;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-char);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: all 0.1s ease-in-out;
+}
+
+.glitch-active {
+  animation: glitch-effect 0.2s linear forwards;
+}
+
+.glitch-active::before {
+  content: attr(data-char);
+  color: #ff00ff;
+  left: -2px;
+  text-shadow: 2px 0 0 #ff00ff;
+  opacity: 1;
+  animation: glitch-shadow 0.2s linear infinite;
+}
+
+.glitch-active::after {
+  content: attr(data-char);
+  color: #00ffff;
+  left: 2px;
+  text-shadow: -2px 0 0 #00ffff;
+  opacity: 1;
+  animation: glitch-shadow 0.2s linear infinite;
+}
+
+@keyframes glitch-effect {
+  0% {transform: skew(10deg) translate(0);}
+  50% {transform: skew(-10deg) translate(-2px, 2px);}
+  100% {transform: skew(0) translate(0);}
+}
+
+@keyframes glitch-shadow {
+  0% {transform: translate(1px, 1px);}
+  20% {transform: translate(-1px, -1px);}
+  40% {transform: translate(1px, -1px);}
+  60% {transform: translate(-1px, 1px);}
+  80% {transform: translate(1px, 1px);}
+  100% {transform: translate(-1px, -1px);}
+}
+
+/* ----------------------------------------------------------------------------------------- */
+/* 네비영역(성현) ---------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------- */
+
+nav {
+  position: sticky; /* 스크롤 시 상단에 고정 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 3rem;
+  background-color: #000;
+  backdrop-filter: blur(0.2em); /* 블러 효과 */
+  z-index: 1000; /* 다른 콘텐츠 위에 오도록 */
+}
+
+/* nav 내부의 컨테이너 */
+nav .container {
+  display: flex; /* 로고와 메뉴를 가로로 정렬 */
+  justify-content: space-between; /* 로고와 메뉴 양 끝으로 배치 */
+  align-items: center; /* 세로 중앙 정렬 */
+  padding: 0 4em 0 2em; /* 네비게이션 내부 콘텐츠의 좌우 패딩 */
+}
+
+nav .container a img.logo_img{}
+
+nav ul {
+  display: flex; /* 메뉴 항목 가로 정렬 */
+  flex-direction: row;
+  gap: 2rem; /* 항목 간 간격 */
+}
+nav ul li {
+  list-style: none;
+  cursor: pointer;
+  transition: 0.5s linear;
+  white-space: nowrap; /* 줄바꿈 방지 */
+  position: relative;
+  
+}
+nav ul li:hover {
+  text-decoration: none;
+}
+nav ul li::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-image: linear-gradient(90deg, #ff6666, #ffff66, #66ff66, #b366ff, #ff66ff);
+  background-size: 100% 100%;
+  transition: width 0.3s ease-in-out;
+}
+nav ul li:hover::after {
+  width: 100%;
+}
+nav ul li a {
+  color: #fff; /* 데스크탑 메뉴 텍스트 색상 */
+  font-family: "Orbitron", "Pretendard-Regular"; /* 원하는 폰트 패밀리 적용 */
+  font-size: 16px; /* 폰트 크기 설정 */
+}
+
+/* @keyframes 정의 (기존 내용에 추가 또는 수정) */
+@supports (animation-timeline: view()) {
+  @keyframes fade-out {
+    to {
+      background-size: 150%;
+      opacity: 1;
+    }
+  }
+  @keyframes appear {
+    to {opacity: 1;}
+  }
+
+  /* 로고 크기 변화 애니메이션 */
+  @keyframes shrink-logo {
+    from {
+      transform: scale(2); /* 시작할 때 2배 크기 */
+      opacity: 0; /* 처음에는 숨김 */
+    }
+    60% {
+       opacity: 0; /*중간에 나타남 */
+    }
+    to {
+      transform: scale(1); /* 최종 크기 (0.8배) */
+      opacity: 1; /* 완전히 나타남 */
+    }
+  }
+
+  /* 언더바 너비 변화 애니메이션 */
+  @keyframes expand-underline {
+    from {
+      width: 10%; /* 처음에는 너비 0 */
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.4;
+    }
+
+    50% {
+      opacity: 0.8; /* 중간에 희미하게 보임 */
+    }
+    to {
+      width: 100%; /* 최종 너비 100% */
+      opacity: 1; /* 완전히 나타남 */
+    }
+  }
+  nav {
+    animation: max-out linear both;
+    animation-timeline: view();
+    animation-range-start: 80vh;
+    animation-range-end: 100vh;
+  }
+}
+/* --- 내비게이션 요소의 초기 상태 설정 --- */
+/* 로고 이미지 초기 숨김 처리 및 부드러운 전환 효과 추가 */
+nav .container a .logo_img {
+  opacity: 0; /* 초기에는 로고를 투명하게 설정 */
+  transition: opacity 0.3s ease-in-out, transform 0.6s ease, height 0.6s ease;
+}
+
+/* --- 스크롤 시 나타나는 애니메이션 활성화 클래스 --- */
+/* 'nav-visible' 클래스가 내비게이션에 추가될 때 로고를 보이게 함 */
+nav.nav-visible .container a .logo_img {
+  opacity: 1; /* nav-visible 클래스 추가 시 로고를 보이게 함 */
+}
+
+/* 'nav-visible' 클래스가 추가될 때 언더바 애니메이션 강제 실행 */
+/* 기존 'appear' @keyframes와 'animation-timeline: view()'는 그대로 작동하며,
+   이 규칙은 특정 브라우저에서 애니메이션이 멈춰있을 경우를 대비합니다. */
+nav.nav-visible:after {
+  animation-play-state: running !important;
+}
+
+/* nav:after 의 background 속성 중복 제거 (무지개색 적용을 위함) */
+nav:after {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  height: 0.2em;
+  width: 0%;
+  bottom: 0;
+  animation: expand-underline linear forwards; /* expand-underline 애니메이션 적용 */
+  animation-timeline: view(); /* 스크롤에 따라 진행 */
+  animation-range-start: var(--banner-half-point); /* 배너 절반 지점 */
+  animation-range-end: 100vh; /* 뷰포트 상단까지 */
+  background: linear-gradient(
+    90deg,
+    #ff6666,
+    #ffb366,
+    #ffff66,
+    #b3ff66,
+    #66ff66,
+    #66ffb3,
+    #66ffff,
+    #66b3ff,
+    #6666ff,
+    #b366ff,
+    #ff66ff,
+    #ff66b3,
+    #ff6666
+  );
+}
+@supports not (animation-timeline: view()) {
+  /* .notice:after {
+    content: " animation-timeline of scroll and view are currently not supported in your browser.";
+  } */
+}
+
+.logo_img {
+  margin-top: 3px;
+  height: 100px;
+   /* 초기 로고 높이 (애니메이션 시작점과 관계 없음) */
+  /* transform: scale(2); 이 초기값은 JS에서 nav-visible 추가시 애니메이션이 담당 */
+  /* transition: transform 0.6s ease, height 0.6s ease; 이 전환은 스크롤 애니메이션과 겹칠 수 있으므로 제거하거나 조심스럽게 사용 */
+  /* will-change: transform, opacity; 성능 최적화 */
+  /* filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4)); */
+  /* 스크롤 애니메이션 적용 */
+  animation: shrink-loog linear forwards; /* shrink-logo 애니메이션 적용 */
+  animation-timeline: view(); /* 스크롤에 따라 진행 */
+  animation-range-start: var(--banner-half-point); /* 배너 절반 지점 */
+  animation-range-end: 100vh; /* 뷰포트 상단까지 */
+  /* 초기에는 숨김 */
+  opacity: 0;
+}
+
+/* nav에 scrolled 클래스가 추가될 때 logo-img 스타일 변경 */
+nav.scrolled a .logo_img {
+  height: 40px; /* 스크롤 시 로고의 높이 */
+  transform: scale(0.8); /* 스크롤 시 크기 */
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+  opacity: 1; /* 완전히 보이도록 */
+  animation: none;
+}
+
+/* 모바일 메뉴 토글 버튼 스타일 */
+.menu_toggle_svg {
+  display: none; /* 데스크탑에서는 숨김 */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 1001; /* 메뉴보다 위에 오도록 */
+}
+
+.menu_toggle_svg span {
+  display: block;
+  height: 4px;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+.menu_toggle_svg.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu_toggle_svg.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu_toggle_svg.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ----------------------------------------------------------------------------------------- */
+/* 컨텐츠1 : 픽셀로그 소개(성현) -------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------- */
+
+.contents1{
+  width: 100%;
+  height: auto;
+  padding: 200px 0;
+}
+.contents1 div.pixelog{
+  margin: 0 auto;
+  width: 100%;
+  aspect-ratio: 30 / 9;
+  height: auto;
+  background-color: #fff;
+  border-radius: 30px;
+  text-align: center;
+  padding: clamp(25px, 5vmin, 70px);
+  box-shadow: 3px 3px 10px rgba(32, 33, 48, 0.2);
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.contents1 div.pixelog:hover{}
+
+.contents1 div.pixelog h3{
+  font-family: "Orbitron", sans-serif;
+  font-weight: 600;
+  font-size: clamp(48px, 7vmin, 75px);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+.contents1 div.pixelog h3 span{
+  font-weight: 900;
+  color: #6b2be2;
+}
+.contents1 div.pixelog p{
+  display: inline-block;
+  font-family: 'Pretendard-Regular';
+  /* font-size: 28px; */
+  font-size: clamp(18px, 3vmin, 32px);
+  padding: 0 70px;
+  line-height: 1.5;
+}
+
+/* ----------------------------------------------------------------------------------------- */
+/* 컨텐츠2 : 서브전시관 카드 영역(혜란) --------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------ */
+
+.contents2{
+  width: 100%;
+  height: auto;
+  /* background-color: #ff00ff; */
+  padding-bottom: 100px;
+}
+.contents2 .theme{
+  width: 100%;
+  height: auto;
+  text-align: center;
+  /* background-color: yellow; */
+  padding: 0 1.5%;
+}
+
+
+/* 타이틀은 reset.css에 공통 클래스로! */
+
+
+.contents2 .theme .theme_box{
+  width: 100%;
+  height: 630px;
+  margin-top: 100px;
+  /* background-color: green; */
+  position: relative;
+}
+
+.contents2 .theme .theme_box > div{
+  width: 100%;
+}
+.contents2 .theme .theme_box > div > div{
+  width: 24.25%;  
+  height: 550px;
+  position: absolute;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1;
+  /* background-color: #6b2be2; */
+}
+.contents2 .theme .theme_box > div > div >  a.theme_link{
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 5;
+}
+.contents2 .theme .theme_box > div > div >  a.theme_link > h4{
+  font-family: 'Pretendard-Bold';
+  color: #fff;
+  font-size: 32px;
+  opacity: 0.6;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  pointer-events: none;
+}
+.contents2 .theme .theme_box > div > div:hover > a.theme_link > h4{
+  opacity: 1;
+  text-shadow: 2px 2px 3px #444;
+}
+
+/* nebula */
+.contents2 .theme .theme_box .nebula{}
+.contents2 .theme .theme_box .nebula > div{
+  background-image: url(../images/main/nebula.png);
+  background-repeat: no-repeat;
+  position: absolute;
+}
+.contents2 .theme .theme_box .nebula .nebula_01{opacity: 1; z-index: 2;}
+.contents2 .theme .theme_box .nebula .nebula_02{opacity: 0;}
+.contents2 .theme .theme_box .nebula .nebula_03{opacity: 0;}
+.contents2 .theme .theme_box .nebula .nebula_04{opacity: 0;}
+
+/* planet */
+.contents2 .theme .theme_box .planet{}
+.contents2 .theme .theme_box .planet > div{
+  /* width: 25.5%; */
+  background-image: url(../images//main/planet.png);
+  background-repeat: no-repeat;
+  position: absolute;
+}
+.contents2 .theme .theme_box .planet .planet_01{opacity: 0;}
+.contents2 .theme .theme_box .planet .planet_02{opacity: 1; z-index: 2;}
+.contents2 .theme .theme_box .planet .planet_03{opacity: 0;}
+.contents2 .theme .theme_box .planet .planet_04{opacity: 0;}
+
+/* galaxy */
+.contents2 .theme .theme_box .galaxy{}
+.contents2 .theme .theme_box .galaxy > div{
+  background-image: url(../images//main/galaxy.png);
+  background-repeat: no-repeat;
+  position: absolute;
+}
+.contents2 .theme .theme_box .galaxy .galaxy_01{opacity: 0;}
+.contents2 .theme .theme_box .galaxy .galaxy_02{opacity: 0;}
+.contents2 .theme .theme_box .galaxy .galaxy_03{opacity: 1; z-index: 2;}
+.contents2 .theme .theme_box .galaxy .galaxy_04{opacity: 0;}
+
+/* explore */
+.contents2 .theme .theme_box .explore{}
+.contents2 .theme .theme_box .explore > div{
+  background-image: url(../images//main/explore.png);
+  background-repeat: no-repeat;
+  position: absolute;
+}
+.contents2 .theme .theme_box .explore .explore_01{opacity: 0;}
+.contents2 .theme .theme_box .explore .explore_02{opacity: 0;}
+.contents2 .theme .theme_box .explore .explore_03{opacity: 0;}
+.contents2 .theme .theme_box .explore .explore_04{opacity: 1; z-index: 2;}
+
+
+/* 각 테마 공통 포지션 영역 */
+.contents2 .theme .theme_box > div > div:nth-of-type(1){
+  background-position: 0 0;
+  top: 0%; left: 0%;
+}
+.contents2 .theme .theme_box > div > div:nth-of-type(2){
+  background-position: -313px -80px;
+  top: 80px; left: 25.25%;
+}
+.contents2 .theme .theme_box > div > div:nth-of-type(3){  
+  background-position: -626px 0;
+  top: 0%; right: 25.25%;
+}
+.contents2 .theme .theme_box > div > div:nth-of-type(4){
+  background-position: -939px -80px;
+  top: 80px; right: 0%;
+}
+
+
+/* ----------------------------------------------------------------------------------------- */
+/* 컨텐츠3 : 동영상 슬라이드 영역(주원) ---------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------------- */
+
+.contents3{
+  display: flex;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  /* background: linear-gradient(135deg, #e6e6fa, #d8bfd8); */
+  padding: 80px 0;
+}
+
+/* Pixelog Update 섹션 */
+.pixelog-update {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+/* 타이틀은 reset.css에 공통 클래스로! */
+
+
+/* 영상 영역 */
+.video-section {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* 스크린 영역 */
+.screen-area {
+  margin-bottom: 10px;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 880px;
+  /* margin: 0 auto; */
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  box-shadow: 3px 3px 10px rgba(32, 33, 48, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
+  /* background-color: red; */
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 495px; /* 16:9 비율 (880px ÷ 16 × 9 = 495px) */
+  border: none;
+  display: block;
+  vertical-align: top;
+}
+
+/* 썸네일 슬라이드 영역 */
+.thumbnail-slider {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  /* padding: 0 0px; */
+  position: relative;
+}
+
+.thumbnail-swiper {
+  width: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.thumbnail-item {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0;
+  overflow: hidden;
+  width: 280px;
+  height: 180px;
+  position: relative;
+}
+
+.thumbnail-item:hover {
+  /* transform: translateY(-10px); */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.thumbnail-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.thumbnail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail-item:hover .thumbnail-image img {
+  transform: scale(1.1);
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.play-button i {
+  color: #333;
+  font-size: 18px;
+  margin-left: 3px;
+}
+
+.thumbnail-item:hover .play-button {
+  background: rgba(255,255,255,1);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* 가상요소 네비게이션 버튼 스타일 */
+.thumbnail-slider::before,
+.thumbnail-slider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #6b2be2;
+  font-size: 40px;
+}
+
+.thumbnail-slider::before {
+  left: -50px;
+  content: '\f104'; /* FontAwesome 왼쪽 화살표 */
+}
+
+.thumbnail-slider::after {
+  right: -50px;
+  content: '\f105'; /* FontAwesome 오른쪽 화살표 */
+}
+
+.thumbnail-slider:hover::before,
+.thumbnail-slider:hover::after {
+  /* color: #6b2be2; */
+  transform: translateY(-50%) scale(1.2);
+}
+
+
+/* ----------------------------------------------------------------------------------------- */
+/* 컨텐츠4 : 멤버소개 카드 영역(민아) ----------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------------- */
+.contents4{
+  display: grid;
+	place-content: center;
+  height: auto;
+  padding: 80px 0;
+  /* background-color: #f5f1fd; */
+}
+.contents4 .member_text{
+  text-align: center;
+}
+
+/* 타이틀은 reset.css에 공통 클래스로! */
+
+.contents4 .member_img{
+  position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr ;
+	gap: 1em;
+	width: 800px;
+	height: 500px;
+	transition: all 400ms;
+  margin: 20px auto;
+}
+.contents4 .member_img .box{
+  position: relative;
+	background: var(--img) center center;
+	background-size: cover;
+	transition: all 400ms;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.contents4 .member_img:hover .box{
+  filter: grayscale(100%) opacity(24%);
+}
+.contents4 .member_img .box:hover{
+  filter: grayscale(0%) opacity(100%);
+}
+.contents4 .member_img:has(.box1:hover){grid-template-columns: 3fr 1fr 1fr 1fr ;}
+.contents4 .member_img:has(.box2:hover){grid-template-columns: 1fr 3fr 1fr 1fr ;}
+.contents4 .member_img:has(.box3:hover){grid-template-columns: 1fr 1fr 3fr 1fr ;}
+.contents4 .member_img:has(.box4:hover){grid-template-columns: 1fr 1fr 1fr 3fr ;}
+
+.contents4 .member_img .box:nth-child(odd){transform: translateY(-16px);}
+.contents4 .member_img .box:nth-child(even){transform: translateY(16px);}
+
+.contents4 .member_img .box::after{
+  content: attr(data-text);
+	position: absolute;
+	bottom: 20px;
+	background: #000;
+	color: #fff;
+	padding: 10px 10px 10px 14px;
+	letter-spacing: 4px;
+	text-transform: uppercase;
+	transform: translateY(60px);
+	opacity: 0;
+	transition: all 400ms;
+}
+.contents4 .member_img .box:hover::after{
+  transform: translateY(0);
+	opacity: 1;
+	transition-delay: 400ms;
+}
+
+/* ----------------------------------------------------------------------------------------- */
+/* 푸터영역(성현) ----------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------------- */
+.footer{
+  width: 100%;
+  height: auto;
+  padding: 6.25rem 0; /* 100px → 6.25rem (16px 기준) */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* 반응형에서 요소가 줄 바꿈되도록 추가 */
+}
+.footer > div{
+  height: 3.75rem; /* 60px → 3.75rem */
+}
+
+.footer .f_logo{
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #5eb0e5; */
+}
+.footer .f_logo a{}
+.footer .f_logo a img{
+  width: 270px;
+}
+
+.footer .f_copy{
+  width: 50%;
+  padding: 0.125rem; /* 2px → 0.125rem */
+  /* background-color: #caca50; */
+  font-family: 'Pretendard-Light';
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  height: auto;
+}
+.footer .f_copy ul{
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap; /* 반응형에서 리스트 항목 줄 바꿈 허용 */
+}
+.footer .f_copy ul li{
+  position: relative;
+}
+.footer .f_copy ul li strong{
+  color: #fff;
+  font-size: 1.125rem; /* 18px → 1.125rem */
+}
+.footer .f_copy ul li a{
+  color: #fff;
+  font-size: 1.125rem; /* 18px → 1.125rem */
+  opacity: 0.8;
+  /* background-color: #66ff66; */
+}
+.footer .f_copy ul li a:hover{
+  opacity: 1;
+  color: #6b2be2;
+}
+.footer .f_copy ul li a:hover span{
+  opacity: 0.8;
+  color: #fff;
+}
+.footer .f_copy ul li a span{
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.footer .f_copy ul li span.colon{
+  display: inline-block;
+}
+
+.footer .f_copy p{
+  width: 100%;
+  color: #fff;
+  font-size: 1.125rem; /* 18px → 1.125rem */
+  /* background-color: #6666ff; */
+}
+.footer .f_sns{
+  width: 25%;
+  /* background-color: lightcoral; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.footer .f_sns a{}
+.footer .f_sns a img{
+  width: 50px;
+  opacity: 0.7;
+}
+.footer .f_sns a img:hover{
+  opacity: 1;
+}

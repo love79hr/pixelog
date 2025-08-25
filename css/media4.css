@@ -1,0 +1,393 @@
+@charset "utf-8";
+
+@media (max-width: 1200px) {
+  .options {
+    height: 500px;
+    gap: 20px;
+  }
+
+  .option.active {
+    flex: 3.5;
+  }
+}
+@media (max-width: 992px) {
+  h2.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+  }
+
+  .hero {
+    height: 70vh;
+    min-height: 500px;
+  }
+
+  .img-txt {
+    font-size: 2.5rem;
+  }
+
+  .timeline .history-txt {
+    font-size: 1.5rem;
+    padding: 2rem 2.5rem;
+  }
+
+  .timeline-item {
+    padding: 15px 30px;
+  }
+
+  .timeline-item .content h3 {
+    font-size: 1.5rem;
+  }
+
+  .timeline-item .content p {
+    font-size: 1rem;
+  }
+
+  .options {
+    flex-wrap: wrap;
+    height: auto;
+    max-width: 90%;
+  }
+
+  .option {
+    min-width: 45%;
+    height: 250px;
+    flex: 1 1 auto;
+  }
+
+  .option.active {
+    flex: 1 1 90%;
+    max-width: 90%;
+    height: 350px;
+  }
+
+  .option .label {
+    font-size: 1.2rem;
+    bottom: 15px;
+    left: 15px;
+  }
+
+  .option .label .main {
+    font-size: 1.4rem;
+  }
+
+  .option .label .sub {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 768px) {
+  section.section {
+    padding: 60px 20px;
+  }
+
+  section.section:not(:first-child) {
+    margin-top: 80px;
+  }
+
+  h2.section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
+  .hero {
+    height: 60vh;
+    min-height: 400px;
+  }
+
+  .img-txt {
+    font-size: 2rem;
+    width: 24ch;
+  }
+
+  .timeline {
+    padding: 80px 10px;
+  }
+
+  .timeline .history-txt {
+    font-size: 1.3rem;
+    padding: 1.5rem 2rem;
+  }
+
+  .timeline-line {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 50px;
+    margin-left: 0;
+    left: 0 !important;
+    text-align: left !important;
+  }
+
+  .timeline-item.right::before,
+  .timeline-item.left::before {
+    left: 12px;
+    right: auto;
+  }
+
+  .present p.present-desc {
+    font-size: 1.2rem;
+    margin-bottom: 60px;
+  }
+
+  .options {
+    flex-direction: column;
+    height: auto;
+    gap: 15px;
+  }
+
+  .option {
+    width: 90%;
+    min-width: unset;
+    height: 200px;
+    flex: unset;
+  }
+
+  .option.active {
+    height: 280px;
+    width: 95%;
+    flex: unset;
+  }
+
+  .option .label {
+    font-size: 1rem;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .option .label .main {
+    font-size: 1.2rem;
+  }
+
+  .option .label .sub {
+    font-size: 0.8rem;
+  }
+
+  .rocket {
+    width: 60px;
+  }
+}
+@media (max-width: 480px) {
+  .hero {
+    height: 50vh;
+    min-height: 300px;
+  }
+
+  .img-txt {
+    font-size: 1.5rem;
+    width: 18ch;
+  }
+
+  .timeline .history-txt {
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .timeline-item .content h3 {
+    font-size: 1.2rem;
+  }
+
+  .timeline-item .content p {
+    font-size: 0.9rem;
+  }
+
+  .present p.present-desc {
+    font-size: 1rem;
+  }
+
+  .option {
+    height: 180px;
+  }
+
+  .option.active {
+    height: 250px;
+  }
+}
+
+/* 미디어 쿼리 - 캐러셀 */
+
+@media (max-width: 1200px) {
+  /* 캐러셀 */
+  .carousel-container {
+    width: 90%;
+    height: 600px;
+  }
+  .carousel-item {
+    width: 280px;
+    height: 380px;
+  }
+  .carousel-btn.prev {
+    left: 20px;
+  }
+  .carousel-btn.next {
+    right: 20px;
+  }
+}
+@media (max-width: 992px) {
+  /* 캐러셀 */
+  .carousel-container {
+    width: 95%;
+    height: 550px;
+    perspective: 1500px;
+  }
+  .carousel-item {
+    width: 250px;
+    height: 350px;
+  }
+  .carousel-item .item-info h4 {
+    font-size: 1.8rem;
+  }
+  .carousel-item .item-info p {
+    font-size: 1.1rem;
+  }
+  .carousel-btn {
+    padding: 12px 17px;
+    font-size: 1.8rem;
+  }
+  .carousel-btn.prev {
+    left: 10px;
+  }
+  .carousel-btn.next {
+    right: 10px;
+  }
+}
+@media (max-width: 768px) {
+  /* 캐러셀 */
+  .carousel-container {
+    width: 95%;
+    height: 500px;
+    perspective: 1200px;
+  }
+  .carousel-item {
+    width: 220px;
+    height: 320px;
+  }
+  .carousel-item .item-info h4 {
+    font-size: 1.5rem;
+  }
+  .carousel-item .item-info p {
+    font-size: 1rem;
+  }
+  .carousel-btn {
+    padding: 10px 15px;
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 480px) {
+  /* 캐러셀 */
+  .carousel-container {
+    width: 100%;
+    height: 450px;
+    perspective: 800px;
+    margin: 60px auto;
+  }
+  .carousel-item {
+    width: 180px;
+    height: 280px;
+  }
+  .carousel-item .item-info h4 {
+    font-size: 1.3rem;
+  }
+  .carousel-item .item-info p {
+    font-size: 0.9rem;
+  }
+  .carousel-btn {
+    padding: 8px 12px;
+    font-size: 1.2rem;
+  }
+  .carousel-btn.prev {
+    left: 5px;
+  }
+  .carousel-btn.next {
+    right: 5px;
+  }  
+}
+
+/* 미디어 쿼리 - 푸터 */
+@media(max-width:1290px) {
+  /* 푸터영역 */
+  .footer .f_logo a img{
+    width: 230px;
+  }
+
+  .footer .f_sns a img{
+    width: 45px;
+  }
+}
+@media(max-width:1040px){
+    
+  .footer .f_logo a img{
+    width: 200px;
+  }
+}
+@media(max-width:960px) {
+
+  .footer{
+    padding: 50px 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .footer .f_logo, .footer .f_copy, .footer .f_sns{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .footer .f_logo a img{
+    width: 200px;
+  }
+  .footer .f_copy ul{
+    justify-content: center;
+    text-align: center;
+  }
+  .footer .f_copy p{
+    text-align: center;
+  }
+  .footer .f_sns a img{
+    padding: 5px;
+  }
+}
+@media (max-width: 768px) {
+
+  .footer .f_logo a img{
+    width: 180px;
+  }
+
+  .footer .f_copy ul{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; /* 반응형에서 리스트 항목 줄 바꿈 허용 */
+  }
+  .footer .f_copy ul li span.colon{
+    display: none;
+  }
+
+  .footer .f_sns a img{
+    width: 38px;
+  }
+}
+@media (max-width: 480px) {
+  
+  .footer{
+    width: 100%;
+    height: 90%;
+  }
+  .footer .f_logo a img{
+    width: 150px;
+  }
+  .footer .f_copy ul li a{
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    padding: 3px 0;
+  }
+  .footer .f_copy ul li a span{
+    display: none;
+  }
+  .footer .f_copy p{
+    font-size: 15px;
+    padding-top: 10px;
+  }
+}
