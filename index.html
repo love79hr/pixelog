@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixelog 우주전시관</title>
+
+  <!-- 파비콘 -->
+   <link rel="icon" href="./images/main/pavicon.png">
+
+  <!-- 링크연결 -->
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/slick.css">
+  <link rel="stylesheet" href="./css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./css/style.css">
+
+  <!-- media링크 -->
+  <link rel="stylesheet" href="./css/media.css">
+
+</head>
+
+<body>
+
+  <!-- 메인배너 영역(혜란) -->
+  <section id="banner">
+  <section class="banner">
+    <div class="video-background-container">
+      <video class="background-video" src="./images/main/banner_video.mp4" muted autoplay loop playsinline webkit-playsinline></video>
+      <div class="video-fallback"></div>
+      <div class="typing-container"></div>
+    </div>
+  </section>
+  </section>
+
+  <!-- 네비영역(성현) ------------------------------------------------------------------>
+  <nav>
+    <div class="container">
+      <a href="./index.html">
+        <img src="./images/main/PIXELOG_logo_color.png" alt="로고" class="logo_img">
+      </a>
+      
+      <div class="menu_toggle_svg" id="menuToggleSvg">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <ul class="nav_menu">
+        <li><a class="nav_txt" href="./mina.html">별과성운</a></li>
+        <li><a href="./juwon.html">행성과위성</a></li>
+        <li><a href="./hyeran.html">은하와우주</a></li>
+        <li><a href="./sunghyun.html">우주탐사와미래</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 컨텐츠1 : 픽셀로그 소개(성현) ---------------------------------------------------->
+  <section id="contents1">
+    <div class="row">
+      <section class="contents1">
+        <div class="pixelog">
+          <h3>Welcome to <span class="txt_color">PIXELOG</span></h3>
+          <p>우리 전시관은 우주과학과 천문학을 쉽게 이해할 수 있도록 구성된 공간으로, 디지털 콘텐츠를 통해 흥미롭게 둘러볼 수 있는 사이트입니다.</p>
+          <!-- <p>디지털 콘텐츠를 통해 흥미롭게 둘러볼 수 있는 사이트입니다.</p> -->
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- 컨텐츠2 : 서브전시관 카드 영역(혜란) ---------------------------------------------->
+  <section id="contents2">
+    <div class="row">
+      <section class="contents2">
+        <div class="theme">
+          <h3 class="h3">Explore The Unknown</h3>
+          <p class="sub_text">다양한 주제로 우주의 신비를 탐험하세요.</p>
+          <div class="theme_box">
+            <div class="nebula">
+              <div class="nebula_01">
+                <a href="./mina.html" class="theme_link">
+                  <h4>별과 성운</h4>
+                </a>
+              </div><!-- 보여주기 -->
+              <div class="nebula_02"></div>
+              <div class="nebula_03"></div>
+              <div class="nebula_04"></div>
+            </div>
+            <div class="planet">
+              <div class="planet_01"></div>
+              <div class="planet_02">
+                <a href="./juwon.html" class="theme_link">
+                  <h4>행성과 위성</h4>
+                </a>
+              </div><!-- 보여주기 -->
+              <div class="planet_03"></div>
+              <div class="planet_04"></div>
+            </div>
+            <div class="galaxy">
+              <div class="galaxy_01"></div>
+              <div class="galaxy_02"></div>
+              <div class="galaxy_03">
+                <a href="./hyeran.html" class="theme_link">
+                  <h4>우주와 은하</h4>
+                </a>
+              </div><!-- 보여주기 -->
+              <div class="galaxy_04"></div>
+            </div>
+            <div class="explore">
+              <div class="explore_01"></div>
+              <div class="explore_02"></div>
+              <div class="explore_03"></div>
+              <div class="explore_04">
+                <a href="./sunghyun.html" class="theme_link">
+                  <h4>우주탐사와 미래</h4>
+                </a>
+              </div><!-- 보여주기 -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- 컨텐츠3 : 동영상 슬라이드 영역(주원) -->
+  <section id="contents3">
+    <div class="container">
+      <section class="contents3">
+        <div class="pixelog-update">
+          <h3 class="h3">Pixelog Update</h2>
+          <p class="sub_text">우주의 최신 소식을 영상으로 확인하세요.</p>
+
+          <!-- 영상 영역 -->
+          <div class="video-section">
+            <!-- 스크린 영역 -->
+            <div class="screen-area">
+              <div class="video-container" id="mainVideo">
+                <iframe src="https://www.youtube.com/embed/xRPjKQtRXR8?si=iFTUADuDB-dcr6OT" title="지구 위 인공위성 Live"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+
+            <!-- 썸네일 슬라이드 영역 -->
+            <div class="thumbnail-slider">
+              <div class="swiper thumbnail-swiper">
+                <div class="swiper-wrapper">
+                  <!-- 썸네일 1: 지구 위 인공위성 Live -->
+                  <div class="swiper-slide">
+                    <div class="thumbnail-item"
+                      data-video-url="https://www.youtube.com/live/xRPjKQtRXR8?si=iFTUADuDB-dcr6OT"
+                      data-video-title="지구 위 인공위성 Live">
+                      <div class="thumbnail-image">
+                        <img src="" alt="지구 위 인공위성 Live">
+                        <div class="play-button">
+                          <i class="fas fa-play"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 썸네일 2: ISS Live2 -->
+                  <div class="swiper-slide">
+                    <div class="thumbnail-item"
+                      data-video-url="https://www.youtube.com/live/fO9e9jnhYK8?si=2CsRqtj7wblHLFce"
+                      data-video-title="ISS Live2">
+                      <div class="thumbnail-image">
+                        <img src="" alt="ISS Live2">
+                        <div class="play-button">
+                          <i class="fas fa-play"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 썸네일 3: How Big is the Universe -->
+                  <div class="swiper-slide">
+                    <div class="thumbnail-item" data-video-url="https://youtu.be/pSHVbLPWA28?si=_yZIGbbzo78FwWPu"
+                      data-video-title="How Big is the Universe">
+                      <div class="thumbnail-image">
+                        <img src="" alt="How Big is the Universe">
+                        <div class="play-button">
+                          <i class="fas fa-play"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 썸네일 4: Real sound of Universe -->
+                  <div class="swiper-slide">
+                    <div class="thumbnail-item" data-video-url="https://youtu.be/wN3mYEpPUOM?si=OwpS40Pe-cqJ9z72"
+                      data-video-title="Real sound of Universe">
+                      <div class="thumbnail-image">
+                        <img src="" alt="Real sound of Universe">
+                        <div class="play-button">
+                          <i class="fas fa-play"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 썸네일 5: stars of cepheus -->
+                  <div class="swiper-slide">
+                    <div class="thumbnail-item" data-video-url="https://youtu.be/p7YQ-KvGbJQ?si=nXaFkZDmSnxn752G"
+                      data-video-title="stars of cepheus">
+                      <div class="thumbnail-image">
+                        <img src="" alt="stars of cepheus">
+                        <div class="play-button">
+                          <i class="fas fa-play"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 썸네일 6: stunning AstroLapse -->
+                  <div class="swiper-slide">
+                    <div class="thumbnail-item" data-video-url="https://youtu.be/CrgYEbIQkac?si=V-1YbW1w0Ju5GoOQ"
+                      data-video-title="stunning AstroLapse">
+                      <div class="thumbnail-image">
+                        <img src="" alt="stunning AstroLapse">
+                        <div class="play-button">
+                          <i class="fas fa-play"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 썸네일 7: Nasa's Spitzer Space Telescope -->
+                  <div class="swiper-slide">
+                    <div class="thumbnail-item" data-video-url="https://youtu.be/ghnnbMWVtWU?si=DfYsN_ykkAWwMPgY"
+                      data-video-title="Nasa's Spitzer Space Telescope">
+                      <div class="thumbnail-image">
+                        <img src="" alt="Nasa's Spitzer Space Telescope">
+                        <div class="play-button">
+                          <i class="fas fa-play"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- 컨텐츠4 : 멤버소개 카드 영역(성현) -->
+  <section id="contents4">
+    <div class="row">
+      <section class="contents4">
+        <div class="member_text">
+          <h3 class="h3">Intro. of Members</h3>
+          <p class="sub_text">리서치에 참여한 우리 맴버들을 만나보세요.</p>
+        </div>
+        <div class="member_img">
+          <div class="box box1" style="--img:url(../images/main/mina.png);" data-text="Min-A"></div>
+          <div class="box box2" style="--img:url(../images/main/juwon.png);" data-text="Juwon"></div>
+          <div class="box box3" style="--img:url(../images/main/hyeran.png);" data-text="Hyeran"></div>
+          <div class="box box4" style="--img:url(../images/main/sunghyun.png);" data-text="sunghyun"></div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- 푸터영역(성현) -->
+  <footer id="footer">
+    <div class="row">
+      <footer class="footer">
+        <div class="f_logo">
+          <a href="#"><img src="./images/main/PIXELOG_logo_white.png" alt=""></a>
+        </div>
+        <div class="f_copy">
+          <ul>
+            <li><strong>Reference Site<span class="colon"> &nbsp;: &nbsp;</span></strong></li>
+            <li>
+              <a href="#">nasa.gov<span>&nbsp;&nbsp; |&nbsp;&nbsp;</span></a>
+              <a href="#">spacex.com<span>&nbsp;&nbsp; |&nbsp;&nbsp;</span></a>
+              <a href="#">pinterest.com</a>
+            </li>
+          </ul>
+          <p>2025© All Rights Reserved</p>
+        </div>
+        <div class="f_sns">
+          <a href="#"><img src="./images/main/nasa-logo.png" alt="나사로고"></a>
+          <a href="#"><img src="./images/main/logo_fac.png" alt="페이스북로고"></a>
+          <a href="#"><img src="./images/main/logo_ins.png" alt="인스타로고"></a>
+          <a href="#"><img src="./images/main/logo_x.png" alt="X로고"></a>
+          <a href="#"><img src="./images/main/logo_yout.png" alt="유튜브로고"></a>
+        </div>
+      </footer>
+    </div>
+  </footer>
+
+  <!-- 제이쿼리 링크 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- 슬릭 링크 -->
+  <script src="./js/slick.min.js"></script>
+  <!-- 스와이퍼 CDN 링크 -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- 스크립트 영역 -->
+  <script>
+
+    // nav 영역시작 -----------------------------------------------------------
+    document.addEventListener("DOMContentLoaded", () => {
+      const navBar = document.querySelector("nav");
+      const banner = document.querySelector("section.banner");
+      // <section class="banner"> 선택
+      const root = document.documentElement;
+      // CSS 변수를 설정하기 위한 :root 요소
+
+      let bannerHeight = 0;
+      let bannerHalfPoint = 0;
+
+      // 배너 높이 및 절반 지점 계산 함수
+      const calculateBannerDimensions = () => {
+        if (banner) {
+          bannerHeight = banner.offsetHeight;
+          bannerHalfPoint = bannerHeight /2;          // CSS 변수로 배너 절반 지점을 설정하여 CSS 애니메이션에서 사용
+          root.style.setProperty('--banner-half-point', `${bannerHalfPoint}px`);
+        }
+      };
+
+      // 초기 로드 시 배너 높이 계산
+      calculateBannerDimensions();
+
+      // 창 크기 변경 시 배너 높이 다시 계산 (반응형 대응)
+      window.addEventListener('resize', calculateBannerDimensions);
+
+
+      window.addEventListener("scroll", () => {
+        const scrollPosition = window.scrollY; // 현재 스크롤 위치
+        console.log(scrollPosition)
+
+        // --- 기존 스크롤 시 내비게이션 바 스타일 변경 로직 (scrolled 클래스) ---
+        // (로고/언더바 나타나는 것과 별개로 nav 바 배경색 등 변경)
+        if (scrollPosition > 50) {
+          navBar.classList.add("scrolled");
+        } else {
+          navBar.classList.remove("scrolled");
+        }
+      });
+
+      // --- 모바일 햄버거 메뉴 토글 로직 (기존 코드 유지) ---
+      const toggleSvg = document.getElementById("menuToggleSvg");
+      const navMenu = document.querySelector(".nav_menu");
+
+      if (toggleSvg && navMenu) {
+        toggleSvg.addEventListener("click", () => {
+          navMenu.classList.toggle("active");
+          toggleSvg.classList.toggle("active");
+        });
+
+        navMenu.querySelectorAll("li").forEach((link) => {
+          link.addEventListener("click", () => {
+            navMenu.classList.remove("active");
+            toggleSvg.classList.remove("active");
+          });
+        });
+      }
+    });
+    // nav 영역 끝 --------------------------------------------------------------------
+
+    // banner 영역 시작 ----------------------------------------------------------------
+
+    const textContainer = document.querySelector(".typing-container");
+
+    // 출력할 전체 문장
+    const fullText =
+      "One small step for a man, one  giant leap for mankind.\n -Nell Armstrong- ";
+
+    // 글리치 효과를 적용할 단어들을 배열에 저장
+    const glitchWords = ["a man", "giant leap", "Armstrong"];
+
+    // 한 글자씩 출력하는 속도 (밀리초)
+    const typingSpeed = 100;
+
+    let charIndex = 0;
+
+    function typeWriter() {
+      // 현재 문장의 글자를 모두 출력했으면 종료
+      if (charIndex >= fullText.length) {
+        return;
+      }
+
+      // 현재 글자를 가져옴
+      const char = fullText.charAt(charIndex);
+      const span = document.createElement("span");
+      span.textContent = char;
+      span.dataset.char = char; // 가상 요소에 사용할 글자 정보 저장
+      textContainer.appendChild(span);
+
+      // 현재까지 출력된 문장을 만듦
+      const currentText = fullText.substring(0, charIndex + 1);
+
+      // 글리치 단어가 현재 문장에 포함되어 있는지 확인
+      glitchWords.forEach((word) => {
+        if (currentText.includes(word)) {
+          // 단어의 시작 인덱스
+          const startIndex = currentText.lastIndexOf(word);
+
+          // 해당 단어의 글자들에만 글리치 효과를 적용
+          for (let i = 0; i < word.length; i++) {
+            const glitchSpan = textContainer.children[startIndex + i];
+            if (glitchSpan) {
+              glitchSpan.classList.add("glitch-active");
+
+              // 글리치 효과를 0.5초 후에 제거
+              setTimeout(() => {
+                glitchSpan.classList.remove("glitch-active");
+              }, 500); // 500ms = 0.5초
+            }
+          }
+        }
+      });
+
+      charIndex++;
+      // 다음 글자를 출력하기 위해 재귀 호출
+      setTimeout(typeWriter, typingSpeed);
+    }
+
+    // 타이핑 애니메이션 시작
+    typeWriter();
+
+    // banner 영역 끝 ----------------------------------------------------------------
+
+
+    // contents2 영역 시작 ----------------------------------------------------------------
+    // 자바스크립트 이벤트
+    document.addEventListener('DOMContentLoaded', function () {
+      const interactions = [
+        {
+          trigger: '.nebula_01',
+          targets: ['.nebula_02', '.nebula_03', '.nebula_04']
+        },
+        {
+          trigger: '.planet_02',
+          targets: ['.planet_01', '.planet_03', '.planet_04']
+        },
+        {
+          trigger: '.galaxy_03',
+          targets: ['.galaxy_01', '.galaxy_02', '.galaxy_04']
+        },
+        {
+          trigger: '.explore_04',
+          targets: ['.explore_01', '.explore_02', '.explore_03']
+        }
+      ];
+
+      interactions.forEach(({ trigger, targets }) => {
+        const triggerEl = document.querySelector(trigger);
+        const targetEls = targets.map(sel => document.querySelector(sel));
+
+        if (triggerEl) {
+          // 마우스 이벤트 (데스크톱)
+          triggerEl.addEventListener('mouseover', () => {
+            targetEls.forEach(el => {
+              if (el) {
+                el.style.opacity = '1';
+                el.style.zIndex = '10';
+              }
+            });
+          });
+
+          triggerEl.addEventListener('mouseout', () => {
+            targetEls.forEach(el => {
+              if (el) {
+                el.style.opacity = '0';
+                el.style.zIndex = '1';
+              }
+            });
+          });
+
+          // 터치 이벤트 (모바일)
+          triggerEl.addEventListener('touchstart', (e) => {
+            // e.preventDefault() 제거하여 CSS hover 효과가 작동하도록 함
+            targetEls.forEach(el => {
+              if (el) {
+                el.style.opacity = '1';
+                el.style.zIndex = '10';
+              }
+            });
+          });
+
+          triggerEl.addEventListener('touchend', (e) => {
+            // e.preventDefault() 제거하여 CSS hover 효과가 작동하도록 함
+            targetEls.forEach(el => {
+              if (el) {
+                el.style.opacity = '0';
+                el.style.zIndex = '1';
+              }
+            });
+          });
+        }
+      });
+    });
+    // contents2 영역 끝 ------------------------------------------------------------------
+
+    // contents3 영역 시작 ----------------------------------------------------------------
+    // YouTube URL에서 비디오 ID 추출 함수
+    function extractVideoId(url) {
+      const patterns = [
+        /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/live\/)([^&\n?#]+)/,
+        /youtube\.com\/live\/([^&\n?#]+)/
+      ];
+
+      for (let pattern of patterns) {
+        const match = url.match(pattern);
+        if (match) return match[1];
+      }
+      return null;
+    }
+
+    // 썸네일 이미지 설정 함수
+    function setThumbnailImages() {
+      const thumbnailItems = document.querySelectorAll('.thumbnail-item');
+
+      thumbnailItems.forEach(item => {
+        const videoUrl = item.getAttribute('data-video-url');
+        const videoId = extractVideoId(videoUrl);
+        const img = item.querySelector('img');
+
+        if (videoId && img) {
+          img.src = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+        }
+      });
+    }
+
+    // Swiper 초기화 및 썸네일 클릭 이벤트
+    document.addEventListener('DOMContentLoaded', function () {
+      const mainVideo = document.getElementById('mainVideo');
+
+      // 썸네일 이미지 설정
+      setThumbnailImages();
+
+      // Swiper 초기화
+      const thumbnailSwiper = new Swiper('.thumbnail-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        lazy: {
+          loadPrevNext: true,
+        },
+        effect: 'slide',
+        speed: 600,
+        grabCursor: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        breakpoints: {
+          0: { 
+            slidesPerView: 2,
+            spaceBetween: 10
+          },
+          321: {
+            slidesPerView: 2,
+            spaceBetween: 15
+          },
+          769: {
+            slidesPerView: 3,
+            spaceBetween: 20
+          }
+        }
+      });
+
+      // 가상요소 버튼 클릭 이벤트
+      const thumbnailSlider = document.querySelector('.thumbnail-slider');
+
+      thumbnailSlider.addEventListener('click', function (e) {
+        const rect = this.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const sliderWidth = rect.width;
+
+        // 왼쪽 버튼 영역 클릭 (왼쪽 80px)
+        if (clickX < 80) {
+          thumbnailSwiper.slidePrev();
+        }
+        // 오른쪽 버튼 영역 클릭 (오른쪽 80px)
+        else if (clickX > sliderWidth - 80) {
+          thumbnailSwiper.slideNext();
+        }
+      });
+
+      // 썸네일 클릭 이벤트
+      document.addEventListener('click', function (e) {
+        if (e.target.closest('.thumbnail-item')) {
+          const thumbnailItem = e.target.closest('.thumbnail-item');
+          const videoUrl = thumbnailItem.getAttribute('data-video-url');
+          const videoTitle = thumbnailItem.getAttribute('data-video-title');
+          const videoId = extractVideoId(videoUrl);
+
+          if (videoId) {
+            // 스크린 비디오 업데이트
+            mainVideo.innerHTML = `<iframe 
+              src="https://www.youtube.com/embed/${videoId}?si=_yZIGbbzo78FwWPu&autoplay=1" 
+              title="${videoTitle}"
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen>
+            </iframe>`;
+
+            // 애니메이션 효과
+            mainVideo.style.transform = 'scale(1.01)';
+            setTimeout(() => {
+              mainVideo.style.transform = 'scale(1)';
+            }, 200);
+          }
+        }
+      });
+    });
+    // contents3 영역 끝 ----------------------------------------------------------------
+    
+  </script>
+</body>
+
+</html>
